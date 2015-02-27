@@ -41,6 +41,7 @@
 
     <link rel="icon" href="favicon.ico"/>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.2/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic,700italic|Source+Code+Pro:400,500,600,700"/>
 
@@ -56,12 +57,19 @@
       }
 
       .navbar-default {
+        border-color: #E6E9EB;
         background-color: #FFFFFF;
         margin: 0;
       }
 
       .navbar-default .navbar-brand a {
-        color: #283E4E; /* TODO: @Jitachi */
+        color: #273D4D; /* TODO: @Jitachi */
+      }
+
+      .navbar-default .navbar-brand .logo {
+        background-color: #2BA8D2;
+        color: #FFFFFF;
+        padding: 4px;
       }
 
       .navbar-default .navbar-brand a:hover {
@@ -73,9 +81,9 @@
       }
 
       .navbar-default .navbar-brand .text-muted,
-      .navbar-default .navbar-brand .text-muted a{
+      .navbar-default .navbar-brand .text-muted a {
         font-size: 80%; /* TODO: @Jitachi */
-        color: #99A3AA; /* TODO: @Jitachi */
+        color: #A1ABB2; /* TODO: @Jitachi */
       }
 
       .showcase {
@@ -86,14 +94,7 @@
         text-align: center;
 
         /* TODO: @Jitachi */
-        background: #1e5799; /* Old browsers */
-        background: -moz-linear-gradient(-45deg,  #1e5799 0%, #2989d8 71%, #7db9e8 100%); /* FF3.6+ */
-        background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,#1e5799), color-stop(71%,#2989d8), color-stop(100%,#7db9e8)); /* Chrome,Safari4+ */
-        background: -webkit-linear-gradient(-45deg,  #1e5799 0%,#2989d8 71%,#7db9e8 100%); /* Chrome10+,Safari5.1+ */
-        background: -o-linear-gradient(-45deg,  #1e5799 0%,#2989d8 71%,#7db9e8 100%); /* Opera 11.10+ */
-        background: -ms-linear-gradient(-45deg,  #1e5799 0%,#2989d8 71%,#7db9e8 100%); /* IE10+ */
-        background: linear-gradient(135deg,  #1e5799 0%,#2989d8 71%,#7db9e8 100%); /* W3C */
-        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#7db9e8',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+        background: #053B7B;
       }
 
       .showcase h1 {
@@ -102,6 +103,25 @@
 
       .showcase a {
         color: white;
+      }
+
+      footer .navbar-default {
+        text-transform: uppercase;
+      }
+
+      footer .navbar-default .navbar-nav a {
+        color: #2E99E5;
+        font-weight: 600;
+      }
+
+      footer .navbar-default .navbar-nav .text-muted a {
+        font-weight: 400;
+        color: #A9B0B4; /* TODO: @Jitachi */
+      }
+
+      footer .navbar-default .navbar-nav .text-muted a span {
+        color: #2E99E5; /* TODO: @Jitachi */
+        font-weight: 600;
       }
     </style>
   </head>
@@ -112,10 +132,18 @@
       <div class="container">
         <div class="navbar-header">
           <div class="navbar-brand">
+            <span class="logo fa fa-code"></span>
+
             <a href="/"><strong>API</strong>Embed</a>
             <small class="text-muted">by <a href="https://www.mashape.com">MashAPE</a></small>
           </div>
         </div>
+
+        <div class="navbar-text navbar-right">
+          <a class="twitter-share-button" href="https://twitter.com/share" data-url="https://apiembed.com" data-via="AhmadNassri" data-related="Mashape" data-hashtags="API, HTTP, Embed" data-dnt="true">Tweet</a>
+
+          <a class="github-button" href="https://github.com/ahmadnassri/apiembed.com" data-icon="octicon-star", data-count-href="/ahmadnassri/apiembed.com/stargazers" data-count-api="/repos/ahmadnassri/apiembed.com#stargazers_count">Star</a>
+
       </div>
     </nav>
 
@@ -138,13 +166,15 @@
           </ul>
 
           <ul class="nav navbar-nav navbar-right">
-            <li>Made with &hearts; at <a href="https://www.mashape.com">MashAPE</a></li>
+            <li class="text-muted"><a href="https://www.mashape.com">Made with &hearts; at <span>MashAPE</span></a></li>
           </ul>
         </div>
       </nav>
     </footer>
 
     <script type="text/javascript" src="https://platform.twitter.com/widgets.js" id="twitter-wjs" async defer></script>
+    <script type="text/javascript" src="https://buttons.github.io/buttons.js" id="github-bjs" async defer></script>
+
     <script type="text/javascript" src="https://www.google-analytics.com/analytics.js" async defer></script>
     <script type="text/javascript">
       window.GoogleAnalyticsObject = 'ga';
