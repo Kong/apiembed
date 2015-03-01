@@ -1,7 +1,103 @@
 extends layout.jade
 
+block styles
+  style.
+    body {
+      padding: 5px;
+      font-family: 'Source Sans Pro', sans-serif;
+      background-color: transparent;
+    }
+
+    code, kbd, pre, samp {
+      font-family: 'Source Code Pro', Menlo, Monaco, Consolas, 'Courier New', monospace;
+    }
+
+    #embed {
+      border-radius: 4px;
+      border: 1px solid #C7C7C7;
+
+      /* TODO: @Jitachi */
+      -webkit-box-shadow: 0px 1px 2px 0px #EAEAEA;
+      -moz-box-shadow: 0px 1px 2px 0px #EAEAEA;
+      box-shadow: 0px 1px 2px 0px #EAEAEA;
+
+      -moz-background-clip: padding;
+      -webkit-background-clip: padding-box;
+      background-clip: padding-box;
+    }
+
+    #embed .nav-tabs {
+      background-color: #FCFCFC;
+      border-color: #E6E6E6;
+    }
+
+    #embed .nav-tabs > li > a,
+    #embed .nav-tabs > li > a:focus,
+    #embed .nav-tabs > li > a:hover {
+      border-top: none;
+      border-bottom: none;
+      border-radius: 0;
+
+      color: #8C9093;
+      font-weight: 600;
+    }
+
+    #embed .nav-tabs > li.active > a,
+    #embed .nav-tabs > li.active > a:focus,
+    #embed .nav-tabs > li.active > a:hover {
+      color: #3079AC;
+      border-color: #E6E6E6;
+    }
+
+    #embed .nav-tabs {
+      border-top-left-radius: 4px;
+      border-top-right-radius: 4px;
+    }
+
+    #embed .nav-tabs > li:first-of-type > a {
+      border-top-left-radius: 4px;
+    }
+
+    #embed .nav-tabs > li:first-of-type > a:hover {
+      border-left: none;
+    }
+
+    #embed .nav-tabs > li:last-of-type > a {
+      border-top-right-radius: 4px;
+    }
+
+    #embed .nav-tabs > li:hover a {
+      background-color: #FFFFFF;
+    }
+
+    #embed .nav-tabs > li:first-of-type > a {
+      border-left: none;
+      border-top-left-radius: 4px;
+    }
+
+    #embed footer {
+      border-top: 1px solid #E6E6E6;
+      padding: 10px 15px;
+      color: #848D94;
+    }
+
+    #embed footer a {
+      color: #399EE5;
+    }
+
+    #embed pre {
+      border: none;
+      background-color: #FFFFFF;
+      padding: 15px;
+      margin: 0;
+    }
+
+    .hljs {
+      padding: 0;
+    }
+
 block content
-  div#main(role='tabpanel')
+  div#embed(role='tabpanel')
     ul.nav.nav-tabs(role='tablist')
       each code, target in output
         li(role='presentation'): a(href='#' + target, aria-controls= target, role='tab' data-toggle='tab')= target
@@ -11,10 +107,13 @@ block content
       each code, target in output
         div.tab-pane(id= target, role='tabpanel='): pre: code= code
 
+    footer Powered by #[a(href="https://apiembed.com/") APIEmbed], made with &hearts; at #[a(href="https://www.mashape.com/") Mashape].
+
+
 block scripts
   script(type='text/javascript').
     // highlight.js
-    $('#main a:first').tab('show')
+    $('#embed a:first').tab('show')
 
     $('pre code').each(function (i, block) {
       hljs.highlightBlock(block);
