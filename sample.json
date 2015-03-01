@@ -1,0 +1,21 @@
+{
+  "method": "POST",
+  "url": "http://httpconsole.com/debug",
+  "httpVersion": "HTTP/1.1",
+  "queryString": [
+    { "name": "foo", "value": "bar" },
+    { "name": "foo", "value": "baz" }
+  ],
+  "headers": [
+    { "name": "Accept", "value": "text/plain" },
+    { "name": "Content-Type", "value": "application/json" }
+  ],
+  "cookies":  [
+    { "name": "foo", "value": "bar" },
+    { "name": "bar", "value": "baz" }
+  ],
+  "postData": {
+    "mimeType": "application/json",
+    "text": "{\"foo\": \"bar\"}"
+  }
+}
