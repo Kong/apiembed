@@ -14,7 +14,7 @@ require('dotenv').load();
 // express setup
 var app = express();
 app.set('view engine', 'jade');
-// app.enable('view cache');
+app.enable('view cache');
 app.disable('x-powered-by');
 
 // add 3rd party middlewares
