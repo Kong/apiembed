@@ -3,7 +3,6 @@ extends layout.jade
 block styles
   style.
     body {
-      padding: 5px;
       font-family: 'Source Sans Pro', sans-serif;
       background-color: transparent;
     }
@@ -76,6 +75,12 @@ block styles
       border-top-left-radius: 4px;
     }
 
+    #embed .tab-content .tab-pane,
+    #embed .tab-content .tab-pane pre,
+    #embed .tab-content .tab-pane pre code {
+      height: 100%;
+    }
+
     #embed footer {
       padding: 10px 15px;
 
@@ -115,17 +120,34 @@ block content
     <!-- Tab panes -->
     div.tab-content
       each code, target in output
-        div.tab-pane(id= target, role='tabpanel='): pre: code= code
+        div.tab-pane(id= target, role='tabpanel'): pre: code= code
 
     footer Powered by #[a(href="https://apiembed.com/") APIembed], made with &hearts; at #[a(href="https://www.mashape.com/") MashAPE].
 
 
 block scripts
   script(type='text/javascript').
-    // highlight.js
-    $('#embed a:first').tab('show')
+    $(function() {
+      // select first tab
+      $('.nav-tabs a:first').tab('show');
 
-    $('pre code').each(function (i, block) {
-      hljs.highlightBlock(block);
+      // highlight the code
+      $('.tab-content pre code').each(function (i, block) {
+        hljs.highlightBlock(block);
+      });
     });
 
+    function resize () {
+      // calculate the new height
+      var height = $(window).height();
+
+      height -= $('.nav-tabs').height();
+      height -= $('footer').height();
+      height -= parseInt($('pre:first-of-type').css('padding-top')) * 2;
+
+      // adjust the height
+      $('.tab-content').height(height);
+    }
+
+    $(document).ready(resize);
+    $(window).resize(resize);
