@@ -36,6 +36,13 @@ app.use(morgan('dev'));
 // add 3rd party middlewares
 app.use(compression());
 
+// enable CORS
+app.use(function(req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  next();
+});
+
 // static middleware does not work here
 app.use('/favicon.ico', function (req, res) {
   res.sendFile(__dirname + '/static/favicon.ico');
