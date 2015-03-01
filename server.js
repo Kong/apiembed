@@ -66,51 +66,54 @@ app.get('/:source?/:targets?', function (req, res, next) {
     targets = availableTargets;
   }
 
-  unirest.get(source).end(function (response) {
-    if (response.error) {
-      debug('failed to load source over http: %s %s', response.code || response.error.code , response.status || response.error.message);
+  unirest.get(source)
+    .headers({'Accept': 'application/json'})
+    .end(function (response) {
+      if (response.error) {
+        debug('failed to load source over http: %s %s', response.code || response.error.code , response.status || response.error.message);
 
-      return next(new APIError(400, 'Could not load JSON source'));
-    }
-
-    var source;
-    var snippet;
-    var output = {};
-
-    try {
-      source = JSON.parse(response.body);
-    } catch (e) {
-      debug('failed to parse content of %s', source);
-
-      return next(new APIError(400, 'Invalid JSON source'));
-    }
-
-    try {
-      snippet = new httpsnippet(source);
-    } catch (err) {
-      debug('failed to generate snippet object: %s', err.message);
-
-      return next(new APIError(400, err));
-    }
-
-    targets.map(function (target) {
-      if (~availableTargets.indexOf(target)) {
-        output[target] = snippet[target].apply(snippet);
+        return next(new APIError(400, 'Could not load JSON source'));
       }
+
+      var snippet;
+      var output = {};
+
+      if (typeof response.body !== 'object') {
+        try {
+          response.body = JSON.parse(response.body);
+        } catch (err) {
+          debug('failed to parse content of %s, with error: %s', source, err.message);
+
+          return next(new APIError(400, 'Invalid JSON source'));
+        }
+      }
+
+      try {
+        snippet = new httpsnippet(response.body);
+      } catch (err) {
+        debug('failed to generate snippet object: %s', err.message);
+
+        return next(new APIError(400, err));
+      }
+
+      targets.map(function (target) {
+        if (~availableTargets.indexOf(target)) {
+          output[target] = snippet[target].apply(snippet);
+        }
+      });
+
+      if (Object.keys(output).length === 0) {
+        debug('no matching targets found');
+
+        return next(new APIError(400, 'Invalid Targets'));
+      }
+
+      res.render('main', {
+        output: output
+      });
+
+      res.end();
     });
-
-    if (Object.keys(output).length === 0) {
-      debug('no matching targets found');
-
-      return next(new APIError(400, 'Invalid Targets'));
-    }
-
-    res.render('main', {
-      output: output
-    });
-
-    res.end();
-  });
 });
 
 // error handler
