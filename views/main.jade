@@ -1,0 +1,22 @@
+extends layout.jade
+
+block content
+  div#main(role='tabpanel')
+    ul.nav.nav-tabs(role='tablist')
+      each code, target in output
+        li(role='presentation'): a(href='#' + target, aria-controls= target, role='tab' data-toggle='tab')= target
+
+    <!-- Tab panes -->
+    div.tab-content
+      each code, target in output
+        div.tab-pane(id= target, role='tabpanel='): pre: code= code
+
+block scripts
+  script(type='text/javascript').
+    // highlight.js
+    $('#main a:first').tab('show')
+
+    $('pre code').each(function (i, block) {
+      hljs.highlightBlock(block);
+    });
+
