@@ -8,11 +8,13 @@ var morgan      = require('morgan');
 var unirest     = require('unirest');
 var util        = require('util');
 
-function APIError (code, message) {
+var availableTargets = httpsnippet._targets();
+
+var APIError = function  (code, message) {
   this.name = 'APIError';
   this.code = (code || 500);
   this.message = (message || 'Oops, something went wrong!');
-}
+};
 
 APIError.prototype = Error.prototype;
 
@@ -39,12 +41,18 @@ app.use('/favicon.ico', function (req, res) {
   res.sendFile(__dirname + '/static/favicon.ico');
 });
 
+// static middleware does not work here
+app.use('/targets', function (req, res) {
+  var info = availableTargets.map(function (target) {
+    return httpsnippet.info(target);
+  });
+
+  res.json(info);
+});
+
 app.get('/:source?/:targets?', function (req, res, next) {
   var source = decodeURIComponent(req.params.source || req.query.source);
   var targets = req.params.targets || req.query.target;
-
-
-  var availableTargets = httpsnippet._targets();
 
   if (!targets) {
     targets = 'all';
