@@ -339,8 +339,7 @@
       }
 
       function loadTargets () {
-        //$.getJSON('//api.apiembed.com/targets', function (targets) {
-        $.getJSON('//localhost:8080/targets', function (targets) {
+        $.getJSON('//api.apiembed.com/targets', function (targets) {
           var items = [];
 
           $.each(targets, function (key, target) {
