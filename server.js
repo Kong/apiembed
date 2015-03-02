@@ -8,7 +8,9 @@ var morgan      = require('morgan');
 var unirest     = require('unirest');
 var util        = require('util');
 
-var availableTargets = httpsnippet._targets();
+var availableTargets = httpsnippet._targets().map(function (target) {
+  return httpsnippet.info(target);
+});
 
 var APIError = function  (code, message) {
   this.name = 'APIError';
@@ -36,6 +38,9 @@ app.use(morgan('dev'));
 // add 3rd party middlewares
 app.use(compression());
 
+// useful to get info in the view
+app.locals.httpsnippet = httpsnippet;
+
 // enable CORS
 app.use(function(req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
@@ -50,11 +55,7 @@ app.use('/favicon.ico', function (req, res) {
 
 // static middleware does not work here
 app.use('/targets', function (req, res) {
-  var info = availableTargets.map(function (target) {
-    return httpsnippet.info(target);
-  });
-
-  res.json(info);
+  res.json(availableTargets);
 });
 
 app.get('/:source?/:targets?', function (req, res, next) {
@@ -78,8 +79,36 @@ app.get('/:source?/:targets?', function (req, res, next) {
 
   // overwrite targets if "all" is chosen
   if (~targets.indexOf('all')) {
-    targets = availableTargets;
+    targets = [];
+
+    availableTargets.map(function (target) {
+      if (!target.members) {
+        return targets.push(target.key);
+      }
+
+
+      target.members.map(function (member) {
+        targets.push(target.family + '-' + member.key);
+      });
+    });
   }
+
+  // construct family-target pair
+  var conversionTargets = targets.map(function (target) {
+    var result = target.split('-');
+
+    if (result.length > 1) {
+      return {
+        family: result[0],
+        key: result[1]
+      };
+    }
+
+    return {
+      family: result[0]
+    };
+  });
+
 
   unirest.get(source)
     .headers({'Accept': 'application/json'})
@@ -111,10 +140,16 @@ app.get('/:source?/:targets?', function (req, res, next) {
         return next(new APIError(400, err));
       }
 
-      targets.map(function (target) {
-        if (~availableTargets.indexOf(target)) {
-          output[target] = snippet[target].apply(snippet);
+      conversionTargets.map(function (target) {
+        if (!target.key) {
+          return output[target.family] = snippet.convert(target.family, target.key);
         }
+
+        if (target.key && !output[target.family]) {
+          output[target.family] = {};
+        }
+
+        return output[target.family][target.key] = snippet.convert(target.family, target.key);
       });
 
       if (Object.keys(output).length === 0) {

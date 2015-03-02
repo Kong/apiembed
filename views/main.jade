@@ -4,12 +4,28 @@ block content
   div#embed(role='tabpanel')
     ul.nav.nav-tabs(role='tablist')
       each code, target in output
-        li(role='presentation'): a(href='#' + target, aria-controls= target, role='tab' data-toggle='tab')= target
+        if (typeof code === 'string')
+          li(role='presentation'): a(href='##{target}', aria-controls= target, role='tab' data-toggle='tab')= httpsnippet.info(target).title
+
+        else
+          li.dropdown(role='presentation'): a.dropdown-toggle(href='#', aria-controls= target, role='tab' data-toggle='dropdown')
+            span= httpsnippet._familyInfo(target).title
+            span &nbsp;
+            span.caret
+
+            ul.dropdown-menu(role='menu')
+              each _code, _target in code
+                li: a(href='##{target}-#{_target}', aria-controls='#{target}-#{_target}', role='tab' data-toggle='tab')= httpsnippet.info(target, _target).title
 
     <!-- Tab panes -->
     div.tab-content
       each code, target in output
-        div.tab-pane(id= target, role='tabpanel'): pre: code= code
+        if (typeof code === 'string')
+          div.tab-pane(id= target, role='tabpanel'): pre: code= code
+
+        else
+          each _code, _target in code
+            div.tab-pane(id='#{target}-#{_target}', role='tabpanel'): pre: code= _code
 
     footer Powered by #[a(href="https://apiembed.com/") APIembed], made with &hearts; at #[a(href="https://www.mashape.com/") MashAPE].
 
