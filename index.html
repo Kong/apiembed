@@ -113,7 +113,6 @@
       .main h2 {
         color: #015699;  /* TODO: @Jitachi */
         font-weight: 300; /* TODO: @Jitachi */
-        text-align: center;
       }
 
       footer .navbar-default {
@@ -132,58 +131,6 @@
       footer .navbar-default .navbar-nav .text-muted a span {
         color: #2E99E5; /* TODO: @Jitachi */
         font-weight: 600;
-      }
-
-      .browser-ui {
-        padding: 20px 0 0;
-        border-radius: 3px;
-        border: 1px solid #ccc;
-        border-bottom: 2px solid #ccc;
-        background: #ddd;
-        display: inline-block;
-        position: relative;
-        width: 100%;
-        line-height: 0;
-      }
-
-      .browser-ui .frame {
-        display: block;
-        height: 15px;
-        position: absolute;
-        top:5px;
-        left: 1px;
-      }
-
-      .browser-ui #preview {
-        padding: 15px;
-        min-height: 150px;
-        background-color: #FAFAFA;
-      }
-
-      .browser-ui #preview i {
-        line-height: 150px;
-        width: 110px;
-        color: #E6E6E6;
-        font-size: 100px;
-      }
-
-      .browser-ui .badge {
-        position: absolute;
-        bottom: -50px;
-        left: 50%;
-        margin: 0 0 0 -50px;
-        width: 100px;
-      }
-
-      .browser-ui span {
-        height: 8px;
-        width: 8px;
-        border-radius: 8px;
-        background-color: #eee;
-        /*background-color: #FDD;*/
-        border:1px solid #dadada;
-        float: left;
-        margin: 0 0 0 4px;
       }
     </style>
   </head>
@@ -222,58 +169,46 @@
     </div>
 
     <div class="container main">
-      <h2>Usage</h2>
+      <div class="row">
+        <div class="col-sm-6">
+          <h2>Create your widget</h2>
 
-      <form class="form-horizontal">
-        <div class="form-group">
-          <label class="col-sm-2 control-label">Source</label>
+          <form>
+            <div class="form-group">
+              <label class="control-label">Source</label>
 
-          <div class="col-sm-10">
-            <input type="url" name="source" class="form-control" placeholder="http://apiembed.com/sample.json" value="http://apiembed.com/sample.json"/>
-          </div>
-        </div>
+              <input type="url" name="source" class="form-control" placeholder="http://apiembed.com/sample.json" value="http://apiembed.com/sample.json"/>
+            </div>
 
-        <div class="form-group">
-          <label class="col-sm-2 control-label">Targets</label>
+            <div class="form-group">
+              <label class="control-label">Targets</label>
 
-          <div id="targets" class="col-sm-10">
-            <label class="checkbox-inline"><input type="checkbox" name="target" value="all"> All</label>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label class="col-sm-2 control-label">Embed Code</label>
-
-          <div class="col-sm-10">
-            <textarea id="embedcode" class="form-control" rows="3"></textarea>
-          </div>
-        </div>
-
-
-        <div class="form-group">
-          <label class="col-sm-2 control-label">Preview</label>
-
-          <div class="col-sm-10">
-            <div class="browser-ui">
-              <div class="frame">
-                <span></span>
-                <span></span>
-                <span></span>
-              </div>
-
-              <div id="preview">
-                <i class="logo fa fa-code center-block"></i>
+              <div id="targets">
+                <label class="checkbox-inline"><input type="checkbox" name="target" value="all"> All</label>
               </div>
             </div>
-          </div>
+
+            <div class="form-group">
+              <label class="control-label">Embed Code</label>
+
+              <textarea id="embedcode" class="form-control" rows="3"></textarea>
+            </div>
+
+            <div class="form-group">
+              <div class="col-sm-offset-2 col-sm-10">
+                <button class="btn btn-default btn-clipboard" data-clipboard-target="embedcode"><i class="fa fa-copy"></i> Copy</button>
+              </div>
+            </div>
+          </form>
         </div>
 
-        <div class="form-group">
-          <div class="col-sm-offset-2 col-sm-10">
-            <button class="btn btn-default btn-clipboard" data-clipboard-target="embedcode"><i class="fa fa-copy"></i> Copy</button>
+        <div class="col-sm-6">
+          <h2>Preview</h2>
+          <div id="preview">
+            <iframe src="http://api.apiembed.com/?source=http://apiembed.com/sample.json" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" width="100%" height="350" seamless></iframe>
           </div>
         </div>
-      </form>
+      </div>
     </div>
 
     <footer>
