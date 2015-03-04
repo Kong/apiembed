@@ -57,9 +57,9 @@ block scripts
       // calculate the new height
       var height = $(window).height();
 
-      height -= $('.nav-tabs').height();
+      height -= $('.nav').height();
       height -= $('footer').height();
-      height -= parseInt($('pre:first-of-type').css('padding-top')) * 2;
+      height -= parseInt($('code:first-of-type').css('padding-top')) * 2;
 
       // adjust the height
       $('.tab-content').height(height);
