@@ -1,31 +1,32 @@
 extends layout.jade
 
 block content
-  div#embed(role='tabpanel')
-    ul.nav.nav-tabs(role='tablist')
+  div#embed
+    ul.nav.nav-tabs
       each code, target in output
         if (typeof code === 'string')
-          li(role='presentation'): a(href='##{target}', aria-controls= target, role='tab' data-toggle='tab')= httpsnippet.info(target).title
+          li: a(href='##{target}', data-toggle='tab')= httpsnippet.info(target).title
 
         else
-          li.dropdown(role='presentation'): a.dropdown-toggle(href='#', aria-controls= target, role='tab' data-toggle='dropdown')
-            span= httpsnippet._familyInfo(target).title
-            span &nbsp;
-            span.caret
+          li.dropdown
+            a.dropdown-toggle(href='#', data-toggle='dropdown')
+              span= httpsnippet._familyInfo(target).title
+              span &nbsp;
+              span.caret
 
-            ul.dropdown-menu(role='menu')
+            ul.dropdown-menu
               each _code, _target in code
-                li: a(href='##{target}-#{_target}', aria-controls='#{target}-#{_target}', role='tab' data-toggle='tab')= httpsnippet.info(target, _target).title
+                li: a(href='##{target}-#{_target}', data-toggle='tab') #[i.fa.fa-check] #[= httpsnippet.info(target, _target).title]
 
     <!-- Tab panes -->
     div.tab-content
       each code, target in output
         if (typeof code === 'string')
-          div.tab-pane(id= target, role='tabpanel'): pre: code= code
+          div.tab-pane(id= target): pre: code= code
 
         else
           each _code, _target in code
-            div.tab-pane(id='#{target}-#{_target}', role='tabpanel'): pre: code= _code
+            div.tab-pane(id='#{target}-#{_target}'): pre: code= _code
 
     footer Powered by #[a(href="https://apiembed.com/") APIembed], made with &hearts; at #[a(href="https://www.mashape.com/") Mashape].
 

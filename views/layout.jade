@@ -39,7 +39,8 @@ html(lang='en', itemscope, itemtype='http://schema.org/Product')
     link(rel='canonical', href='https://apiembed.com/')
     link(rel='author', href='https://www.ahmadnassri.com/about')
 
-    link(rel='stylesheet', type='text/css', href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic,700italic|Source+Code+Pro:400,500,600,700', media='all')
+    link(rel='stylesheet', type='text/css', href='https://fonts.googleapis.com/css?family=Open+Sans:400,600|Source+Code+Pro:200,300,400,500,600,700,900', media='all')
+    link(rel='stylesheet', type='text/css', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css', media='all')
     link(rel='stylesheet', type='text/css', href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.2/css/bootstrap.min.css', media='all')
     link(rel='stylesheet', type='text/css', href='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/tomorrow.min.css', media='all')
 
@@ -49,7 +50,7 @@ html(lang='en', itemscope, itemtype='http://schema.org/Product')
 
     style.
       body {
-        font-family: 'Source Sans Pro', sans-serif;
+        font-family: 'Open Sans', sans-serif;
         background-color: transparent;
       }
 
@@ -60,12 +61,10 @@ html(lang='en', itemscope, itemtype='http://schema.org/Product')
       #embed {
         border-radius: 4px;
         border: 1px solid #C7C7C7;
+        border: 1px solid rgba(0, 0, 0, .22);
         background-color: #FFFFFF;
 
-        /* TODO: @Jitachi */
-        -webkit-box-shadow: 0px 1px 2px 0px #EAEAEA;
-        -moz-box-shadow: 0px 1px 2px 0px #EAEAEA;
-        box-shadow: 0px 1px 2px 0px #EAEAEA;
+        box-shadow: 1px 0px 3px rgba(0, 0, 0, .15);
 
         -moz-background-clip: padding;
         -webkit-background-clip: padding-box;
@@ -73,26 +72,63 @@ html(lang='en', itemscope, itemtype='http://schema.org/Product')
       }
 
       #embed .nav-tabs {
+        border-color: #EAEAEA;
         background-color: #FCFCFC;
-        border-color: #E6E6E6;
       }
 
-      #embed .nav-tabs > li > a,
-      #embed .nav-tabs > li > a:focus,
-      #embed .nav-tabs > li > a:hover {
+      #embed .nav-tabs > li a,
+      #embed .nav-tabs > li a:focus,
+      #embed .nav-tabs > li a:hover {
         border-top: none;
         border-bottom: none;
         border-radius: 0;
 
         color: #8C9093;
+        font-size: 13px;
         font-weight: 600;
+        padding: 16px;
+      }
+
+      #embed .nav-tabs .open > a {
+        border-color: #E6E6E6;
+        background-color: #FCFCFC;
       }
 
       #embed .nav-tabs > li.active > a,
       #embed .nav-tabs > li.active > a:focus,
       #embed .nav-tabs > li.active > a:hover {
-        color: #3079AC;
+        color: #216FA6;
         border-color: #E6E6E6;
+      }
+
+      #embed .nav-tabs > .dropdown.active > a {
+        color: #41484C;
+      }
+
+      #embed .nav-tabs > .dropdown > .dropdown-menu a .fa {
+        opacity: 0;
+      }
+
+      #embed .nav-tabs > .dropdown.active > .dropdown-menu > .active > a .fa {
+        opacity: 1;
+      }
+
+      #embed .nav-tabs > .dropdown.active > .dropdown-menu > .active > a,
+      #embed .nav-tabs > .dropdown.active > .dropdown-menu > .active > a:focus,
+      #embed .nav-tabs > .dropdown.active > .dropdown-menu > .active > a:hover {
+        color: #216FA6;
+        background-color: #F2F9FF;
+      }
+
+      #embed .dropdown-menu {
+        padding: 0;
+        border-radius: 0;
+
+        border-top: 0;
+        margin-top: 0;
+
+        background-color: #FCFCFC;
+        box-shadow: 1px 0px 4px rgba(0, 0, 0, .15);
       }
 
       #embed .nav-tabs {
@@ -130,7 +166,9 @@ html(lang='en', itemscope, itemtype='http://schema.org/Product')
       #embed footer {
         padding: 10px 15px;
 
-        color: #848D94;
+        color: #7b858c;
+        font-size: 11px;
+        font-weight: 600;
 
         border-top: 1px solid #E6E6E6;
         border-bottom-left-radius: 4px;
@@ -140,7 +178,7 @@ html(lang='en', itemscope, itemtype='http://schema.org/Product')
       }
 
       #embed footer a {
-        color: #399EE5;
+        color: #399ee5;
       }
 
       #embed pre {
@@ -160,14 +198,13 @@ html(lang='en', itemscope, itemtype='http://schema.org/Product')
     block styles
 
   body
-    div.container
-      block content
+    block content
 
-      block scripts
+    block scripts
 
-      script(type='text/javascript').
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-        ga('create', 'UA-XXXX', 'apiemebd.com');
-        ga('require', 'displayfeatures');
-        ga('require', 'linkid', 'linkid.js');
-        ga('send', 'pageview');
+    script(type='text/javascript').
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-XXXX', 'apiemebd.com');
+      ga('require', 'displayfeatures');
+      ga('require', 'linkid', 'linkid.js');
+      ga('send', 'pageview');
