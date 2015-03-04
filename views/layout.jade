@@ -77,8 +77,7 @@ html(lang='en', itemscope, itemtype='http://schema.org/Product')
       }
 
       #embed .nav-tabs > li a,
-      #embed .nav-tabs > li a:focus,
-      #embed .nav-tabs > li a:hover {
+      #embed .nav-tabs > li a:focus {
         border-top: none;
         border-bottom: none;
         border-radius: 0;
@@ -87,6 +86,11 @@ html(lang='en', itemscope, itemtype='http://schema.org/Product')
         font-size: 13px;
         font-weight: 600;
         padding: 16px;
+      }
+
+      #embed .nav-tabs > li a:hover {
+        color: #41484C;
+        background-color: #FCFCFC;
       }
 
       #embed .nav-tabs .open > a {
@@ -136,18 +140,6 @@ html(lang='en', itemscope, itemtype='http://schema.org/Product')
         border-top-right-radius: 4px;
       }
 
-      #embed .nav-tabs > li:first-of-type > a {
-        border-top-left-radius: 4px;
-      }
-
-      #embed .nav-tabs > li:first-of-type > a:hover {
-        border-left: none;
-      }
-
-      #embed .nav-tabs > li:last-of-type > a {
-        border-top-right-radius: 4px;
-      }
-
       #embed .nav-tabs > li:hover a {
         background-color: #FFFFFF;
       }
@@ -183,12 +175,15 @@ html(lang='en', itemscope, itemtype='http://schema.org/Product')
 
       #embed pre {
         margin: 0;
-        padding: 15px;
 
         border: none;
-        border-radius: none;
+        border-radius: 0;
 
         background-color: #FFFFFF;
+      }
+
+      #embed pre code {
+        padding: 15px;
       }
 
       .hljs {
