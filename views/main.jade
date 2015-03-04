@@ -18,21 +18,32 @@ block content
               each _code, _target in code
                 li: a(href='##{target}-#{_target}', data-toggle='tab') #[i.fa.fa-check] #[= httpsnippet.info(target, _target).title]
 
-    <!-- Tab panes -->
     div.tab-content
       each code, target in output
         if (typeof code === 'string')
-          div.tab-pane(id= target): pre: code= code
+          div.tab-pane(id= target)
+            button(class='btn btn-default btn-clipboard', data-clipboard-target='#{target}'): i.fa.fa-copy
+            pre: code= code
 
         else
           each _code, _target in code
-            div.tab-pane(id='#{target}-#{_target}'): pre: code= _code
+            div.tab-pane(id='#{target}-#{_target}')
+              button(class='btn btn-default btn-clipboard', data-clipboard-target='#{target}-#{_target}'): i.fa.fa-copy
+              pre: code= _code
 
     footer Powered by #[a(href="https://apiembed.com/") APIembed], made with &hearts; at #[a(href="https://www.mashape.com/") Mashape].
 
 block scripts
   script(type='text/javascript').
     $(function() {
+      ZeroClipboard.config({
+        swfPath: '//cdnjs.cloudflare.com/ajax/libs/zeroclipboard/2.2.0/ZeroClipboard.swf',
+        forceHandCursor: true,
+        trustedDomains: [window.location.host, "cdnjs.cloudflare.com"]
+      });
+
+      new ZeroClipboard($('.btn-clipboard'));
+
       // select first tab
       $('.nav-tabs a:first').tab('show');
 
