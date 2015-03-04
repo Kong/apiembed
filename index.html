@@ -43,7 +43,7 @@
     <link rel="shortcut icon" href="/favicon.ico"/>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.2/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic,700italic|Source+Code+Pro:400,500,600,700"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,800,700,600,300|Source+Code+Pro:200,300,400,500,600,700,900"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css"/>
 
     <!--[if lt IE 9]>
@@ -54,7 +54,7 @@
     <style>
       body {
         padding-bottom: 30px;
-        font-family: 'Source Sans Pro', sans-serif;
+        font-family: 'Open Sans', sans-serif;
       }
 
       .navbar-default {
@@ -94,8 +94,12 @@
         color: #FFFFFF;
         text-align: center;
 
-        /* TODO: @Jitachi */
-        background: #053B7B;
+        background: #053b7b;
+        background: -moz-linear-gradient(45deg, #053b7b 0%, #005fa3 100%);
+        background: -webkit-linear-gradient(45deg, #053b7b 0%, #005fa3 100%);
+        background: -o-linear-gradient(45deg, #053b7b 0%, #005fa3 100%);
+        background: -ms-linear-gradient(45deg, #053b7b 0%, #005fa3 100%);
+        background: linear-gradient(135deg, #053b7b 0%, #005fa3 100%);
       }
 
       .showcase h1 {
@@ -161,11 +165,11 @@
       <div class="container">
         <h1>Embeddable API snippets</h1>
         <p>For your website, blog or API documentation, made with &hearts; at <a href="https://www.Mashape.com">Mashape</a></p>
+
+        <br/>
+
+        <iframe src="http://api.apiembed.com/?source=http://apiembed.com/sample.json&amp;target=all" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" width="100%" height="350" seamless></iframe>
       </div>
-
-      <br/>
-
-      <iframe src="http://api.apiembed.com/?source=http://apiembed.com/sample.json&amp;target=all" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" width="100%" height="350" seamless></iframe>
     </div>
 
     <div class="container main">
