@@ -21,13 +21,13 @@ block content
     div.tab-content
       each code, target in output
         if (typeof code === 'string')
-          div.tab-pane(id= target)
+          div.tab-pane(id= target).fade
             button(class='btn btn-default btn-clipboard', data-clipboard-target='#{target}'): i.fa.fa-copy
             pre: code= code
 
         else
           each _code, _target in code
-            div.tab-pane(id='#{target}-#{_target}')
+            div.tab-pane(id='#{target}-#{_target}').fade
               button(class='btn btn-default btn-clipboard', data-clipboard-target='#{target}-#{_target}'): i.fa.fa-copy
               pre: code= _code
 
