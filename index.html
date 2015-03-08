@@ -354,9 +354,7 @@
         <div class="col-sm-6 preview-container">
           <h2>Preview</h2>
 
-          <div id="preview">
-            <iframe src="//api.apiembed.com/?source=https://apiembed.com/sample.json" frameborder="0" scrolling="no" width="100%" height="350" seamless></iframe>
-          </div>
+          <div id="preview"></div>
         </div>
       </div>
     </div>
@@ -425,7 +423,19 @@
     </script>
 
     <script type="text/javascript">
-      function formHandler () {
+      function generateWidget () {
+        var query = $('form').serialize();
+
+        var width = $('input[data-name="width"]').val();
+        var height = $('input[data-name="height"]').val();
+
+        var code = '<iframe src="//api.apiembed.com/?' + query + '" frameborder="0" scrolling="no" width="' + width + '" height="' + height + '" seamless></iframe>';
+
+        $('#embedcode').val(code);
+        $('#preview').html(code);
+      }
+
+      function assignEvents () {
         $('form').on('submit', function (event) {
           event.preventDefault();
         });
@@ -450,17 +460,7 @@
           container.find('input[type="checkbox"]:not([data-all]):first').prop('checked', true);
         });
 
-        $('form').on('keyup keypress change', 'input', function () {
-          var query = $('form').serialize();
-
-          var width = $('input[data-name="width"]').val();
-          var height = $('input[data-name="height"]').val();
-
-          var code = '<iframe src="//api.apiembed.com/?' + query + '" frameborder="0" scrolling="no" width="' + width + '" height="' + height + '" seamless></iframe>';
-
-          $('#embedcode').val(code);
-          $('#preview').html(code);
-        });
+        $('form').on('keyup keypress change', 'input', generateWidget);
       }
 
       function loadTargets () {
@@ -499,9 +499,8 @@
       }
 
       $(document).ready(loadTargets);
-
-      $(document).ready(formHandler);
-
+      $(document).ready(assignEvents);
+      $(document).ready(generateWidget);
       $(document).ready(clipboardHandler);
     </script>
   </body>
