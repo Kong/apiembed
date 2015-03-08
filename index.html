@@ -70,21 +70,29 @@
       }
 
       .navbar-default .navbar-brand a {
-        color: #273D4D;
+        color: #273d4c;
+        font-size: 13px;
+        font-weight: 600;
+      }
+
+      .navbar-default .navbar-brand a img {
+        vertical-align: text-top;
+        margin-right: 3px;
       }
 
       .navbar-default .navbar-brand a:hover {
         text-decoration: none;
       }
 
-      .navbar-default .navbar-brand strong {
-        font-weight: 600;
+      .navbar-default .navbar-brand a strong {
+        font-weight: 700;
       }
 
       .navbar-default .navbar-brand .text-muted,
       .navbar-default .navbar-brand .text-muted a {
-        font-size: 80%;
+        font-size: 13px;
         color: #A1ABB2;
+        font-weight: 400;
       }
 
       .navbar-default .navbar-text {
@@ -105,9 +113,15 @@
       }
 
       header h1 {
-        font-weight: 300;
         margin: 0 0 20px 0;
+        font-size: 37px;
+        font-weight: 300;
         line-height: 28px;
+      }
+
+      header p {
+        font-size: 15px;
+        color: rgba(255,255,255,.6);
       }
 
       header a {
@@ -115,8 +129,9 @@
       }
 
       h2 {
-        color: #015699;
-        font-weight: 300;
+        color: #262D33;
+        font-weight: 400;
+        font-size: 27px;
         margin: 0 0 40px 0;
       }
 
@@ -141,12 +156,12 @@
 
         background-color: #37A0E8;
 
-        font-size: 15px;
+        font-size: 13px;
         font-weight: 700;
 
         margin: 30px 0 80px 0;
 
-        padding: 10px 10px;
+        padding: 10px 15px;
 
         text-shadow: 0 1px 0 rgba(0, 0, 0, 0.15);
       }
@@ -160,6 +175,14 @@
 
       .form-horizontal .control-label {
         text-align: left;
+        font-size: 13px;
+        font-weight: 700;
+        color: #262D33;
+      }
+
+      .checkbox label {
+        color: #435059;
+        font-size: 13px;
       }
 
       .form-group:last-of-type {
@@ -190,30 +213,39 @@
         margin: 80px 0 60px 0;
       }
 
-      #docs h3, p {
+      #docs h3 {
+        color: #262D33;
+        font-size: 18px;
+        font-weight: 600;
         margin: 0 0 20px 0;
+      }
+
+      #docs p {
+        font-size: 15px;
+        line-height: 23px;
+        font-weight: 400;
+        color: #435059;
+        margin: 0 0 20px 0;
+      }
+
+      #docs table {
+        color: #435059;
       }
 
       #target-list kbd {
         margin-right: 5px;
       }
 
-      footer .navbar-default .navbar-right {
+      footer .navbar-default .navbar-nav a {
+        color: #28a1fc;
+        font-size: 11px;
+        font-weight: 700;
         text-transform: uppercase;
       }
 
-      footer .navbar-default .navbar-nav a {
-        color: #2E99E5;
-      }
-
-      footer .navbar-default .navbar-nav .text-muted a {
-        font-weight: 400;
-        color: #A9B0B4;
-      }
-
-      footer .navbar-default .navbar-nav .text-muted a span {
-        color: #2E99E5;
-        font-weight: 600;
+      footer .navbar-default .navbar-nav a:hover {
+        color: #2477b2;
+        text-decoration: underline;
       }
     </style>
   </head>
@@ -226,7 +258,7 @@
           <div class="navbar-brand">
             <a href="/">
               <img src="logo-small.svg"/>
-              <strong>API</strong>Embed
+              <strong>API</strong>embed
             </a>
 
             <small class="text-muted">by <a href="https://www.Mashape.com">Mashape</a></small>
@@ -257,7 +289,7 @@
     <div class="container">
       <div class="row">
         <div class="col-sm-6 form-container">
-          <h2>Create your widget</h2>
+          <h2>Embed Your API</h2>
 
           <form class="form-horizontal">
             <div class="form-group">
