@@ -7,27 +7,27 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
 
-    <title>API Embed | Embeddable API snippets for your website, blog or API documentation.</title>
+    <title>APIEmbed by Mashape</title>
 
-    <meta itemprop="name"             content="API Embed"/>
-    <meta property="og:title"         content="API Embed"/>
-    <meta name="twitter:title"        content="API Embed"/>
+    <meta itemprop="name"             content="APIEmbed by Mashape"/>
+    <meta property="og:title"         content="APIEmbed by Mashape"/>
+    <meta name="twitter:title"        content="APIEmbed by Mashape"/>
 
     <link rel="author"                href="https://www.ahmadnassri.com/about"/>
     <meta name="author"               content="Ahmad Nassri"/>
-    <meta name="twitter:creator"      content="@AhmadNassri"/>
+    <meta name="twitter:creator"      content="@Mashape"/>
 
-    <meta name="description"          content="Embeddable API snippets for your website, blog or API documentation."/>
-    <meta itemprop="description"      content="Embeddable API snippets for your website, blog or API documentation."/>
-    <meta property="og:description"   content="Embeddable API snippets for your website, blog or API documentation."/>
-    <meta name="twitter:description"  content="Embeddable API snippets for your website, blog or API documentation."/>
+    <meta name="description"          content="Embeddable API snippets for your website, blog or API documentation. Made with Love by Mashape."/>
+    <meta itemprop="description"      content="Embeddable API snippets for your website, blog or API documentation. Made with Love by Mashape."/>
+    <meta property="og:description"   content="Embeddable API snippets for your website, blog or API documentation. Made with Love by Mashape."/>
+    <meta name="twitter:description"  content="Embeddable API snippets for your website, blog or API documentation. Made with Love by Mashape."/>
 
     <meta itemprop="image"            content="https://apiembed.com/share.jpg"/>
     <meta property="og:image"         content="https://apiembed.com/share.jpg"/>
     <meta name="twitter:image:src"    content="https://apiembed.com/share.jpg"/>
 
     <meta name="twitter:card"         content="product"/>
-    <meta name="twitter:site"         content="@AhmadNassri"/>
+    <meta name="twitter:site"         content="@Mashape"/>
     <meta name="twitter:domain"       content="apiembed.com"/>
 
     <link rel="canonical"             href="https://apiembed.com/"/>
@@ -37,6 +37,7 @@
     <meta property="og:type"          content="website"/>
     <meta property="og:site_name"     content="API Embed"/>
     <meta property="fb:admins"        content="227304446"/>
+    <meta property="fb:admins"        content="576641408"/>
 
 
     <link rel="icon" href="/favicon.ico"/>
@@ -44,7 +45,8 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.2/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,800,700,600,300|Source+Code+Pro:200,300,400,500,600,700,900"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css"/>
+
+    <meta name="google-site-verification" content="XjJnyy8AZFpP7-_QiaaKEv0pDmNRCHjoAlW_uKnpLI4"/>
 
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -53,8 +55,12 @@
 
     <style>
       body {
-        padding-bottom: 30px;
+        padding-bottom: 100px;
         font-family: 'Open Sans', sans-serif;
+      }
+
+      code, kbd, pre, samp {
+        font-family: 'Source Code Pro', Menlo, Monaco, Consolas, 'Courier New', monospace
       }
 
       .navbar-default {
@@ -64,13 +70,7 @@
       }
 
       .navbar-default .navbar-brand a {
-        color: #273D4D; /* TODO: @Jitachi */
-      }
-
-      .navbar-default .navbar-brand .logo {
-        background-color: #2BA8D2;
-        color: #FFFFFF;
-        padding: 4px;
+        color: #273D4D;
       }
 
       .navbar-default .navbar-brand a:hover {
@@ -78,62 +78,141 @@
       }
 
       .navbar-default .navbar-brand strong {
-        font-weight: 600; /* TODO: @Jitachi */
+        font-weight: 600;
       }
 
       .navbar-default .navbar-brand .text-muted,
       .navbar-default .navbar-brand .text-muted a {
-        font-size: 80%; /* TODO: @Jitachi */
-        color: #A1ABB2; /* TODO: @Jitachi */
+        font-size: 80%;
+        color: #A1ABB2;
       }
 
-      .showcase {
-        height: 400px; /* TODO: @Jitachi */
-        padding-top: 70px; /* TODO: @Jitachi */
+      .navbar-default .navbar-text {
+        margin-bottom: 0px;
+      }
+
+      header {
+        padding: 80px 0;
 
         color: #FFFFFF;
-        text-align: center;
 
-        background: #053b7b;
-        background: -moz-linear-gradient(45deg, #053b7b 0%, #005fa3 100%);
-        background: -webkit-linear-gradient(45deg, #053b7b 0%, #005fa3 100%);
-        background: -o-linear-gradient(45deg, #053b7b 0%, #005fa3 100%);
-        background: -ms-linear-gradient(45deg, #053b7b 0%, #005fa3 100%);
-        background: linear-gradient(135deg, #053b7b 0%, #005fa3 100%);
+        background: #313AA3;
+        background: -moz-linear-gradient(45deg, #313AA3 0%, #422B8D 100%);
+        background: -webkit-linear-gradient(45deg, #313AA3 0%, #422B8D 100%);
+        background: -o-linear-gradient(45deg, #313AA3 0%, #422B8D 100%);
+        background: -ms-linear-gradient(45deg, #313AA3 0%, #422B8D 100%);
+        background: linear-gradient(135deg, #313AA3 0%, #422B8D 100%);
       }
 
-      .showcase h1 {
-        font-weight: 300; /* TODO: @Jitachi */
+      header h1 {
+        font-weight: 300;
+        margin: 0 0 20px 0;
+        line-height: 28px;
       }
 
-      .showcase a {
+      header a {
         color: white;
       }
 
-      .main {
-        margin-top: 150px;
+      h2 {
+        color: #015699;
+        font-weight: 300;
+        margin: 0 0 40px 0;
       }
 
-      .main h2 {
-        color: #015699;  /* TODO: @Jitachi */
-        font-weight: 300; /* TODO: @Jitachi */
+      .form-container,
+      .preview-container {
+        padding-top: 80px;
       }
 
-      footer .navbar-default {
+      .form-container {
+        height: 100%;
+        border-right: 1px solid #E1E1E1;
+      }
+
+      hr {
+        margin: 0;
+        border-color: #E1E1E1;
+      }
+
+      .btn-default {
+        color: #FFFFFF;
+        border-color: #0089EB;
+
+        background-color: #37A0E8;
+
+        font-size: 15px;
+        font-weight: 700;
+
+        margin: 30px 0 80px 0;
+
+        padding: 10px 10px;
+
+        text-shadow: 0 1px 0 rgba(0, 0, 0, 0.15);
+      }
+
+      .btn-default:hover {
+        color: #FFFFFF;
+        border-color: #0089EB;
+        background-color: #2890E3;
+      }
+
+
+      .form-horizontal .control-label {
+        text-align: left;
+      }
+
+      .form-group:last-of-type {
+        border: 0;
+      }
+
+      .form-group {
+        margin-bottom: 0;
+      }
+
+      .form-group[data-family] {
+        display: none;
+      }
+
+      .form-group hr {
+        margin: 30px 0;
+      }
+
+      .form-group:first-of-type hr {
+        margin-top: 0;
+      }
+
+      .form-group label.col-xs-12 {
+        margin-bottom: 20px;
+      }
+
+      #docs h2 {
+        margin: 80px 0 60px 0;
+      }
+
+      #docs h3, p {
+        margin: 0 0 20px 0;
+      }
+
+      #target-list kbd {
+        margin-right: 5px;
+      }
+
+      footer .navbar-default .navbar-right {
         text-transform: uppercase;
       }
 
       footer .navbar-default .navbar-nav a {
-        color: #2E99E5;  /* TODO: @Jitachi */
+        color: #2E99E5;
       }
 
       footer .navbar-default .navbar-nav .text-muted a {
         font-weight: 400;
-        color: #A9B0B4; /* TODO: @Jitachi */
+        color: #A9B0B4;
       }
 
       footer .navbar-default .navbar-nav .text-muted a span {
-        color: #2E99E5; /* TODO: @Jitachi */
+        color: #2E99E5;
         font-weight: 600;
       }
     </style>
@@ -146,7 +225,7 @@
         <div class="navbar-header">
           <div class="navbar-brand">
             <a href="/">
-              <span class="logo fa fa-code"></span>
+              <img src="logo-small.svg"/>
               <strong>API</strong>Embed
             </a>
 
@@ -154,80 +233,135 @@
           </div>
         </div>
 
-        <div class="navbar-text navbar-right">
-          <a class="twitter-share-button" href="https://twitter.com/share" data-url="https://apiembed.com" data-via="AhmadNassri" data-related="Mashape" data-hashtags="API, HTTP, Embed" data-dnt="true">Tweet</a>
-
-          <a class="github-button" href="https://github.com/ahmadnassri/apiembed.com" data-icon="octicon-star", data-count-href="/ahmadnassri/apiembed.com/stargazers" data-count-api="/repos/ahmadnassri/apiembed.com#stargazers_count">Star</a>
+        <div class="navbar-text navbar-right hidden-xs">
+          <a class="twitter-share-button" href="https://twitter.com/share" data-url="https://apiembed.com" data-via="Mashape" data-related="AhmadNassri" data-hashtags="API, HTTP, Embed" data-dnt="true">Tweet</a>
+          <a class="github-button" href="https://github.com/mashape/apiembed" data-icon="octicon-star", data-count-href="/mashape/apiembed/stargazers" data-count-api="/repos/mashape/apiembed#stargazers_count">Star</a>
       </div>
     </nav>
 
-    <div class="showcase">
+    <header>
       <div class="container">
-        <h1>Embeddable API snippets</h1>
-        <p>For your website, blog or API documentation, made with &hearts; at <a href="https://www.Mashape.com">Mashape</a></p>
+        <div class="row">
+          <div class="col-sm-1 hidden-xs hidden-sm">
+            <img src="logo.svg"/>
+          </div>
 
-        <br/>
-
-        <iframe src="//api.apiembed.com/?source=https://apiembed.com/sample.json&amp;target=all" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" width="100%" height="350" seamless></iframe>
+          <div class="col-sm-11">
+            <h1>Embeddable API snippets</h1>
+            <p>For your website, blog or API documentation, made with &hearts; at <a href="https://www.Mashape.com">Mashape</a></p>
+          </div>
+        </div>
       </div>
-    </div>
+    </header>
 
-    <div class="container main">
+    <div class="container">
       <div class="row">
-        <div class="col-sm-6">
+        <div class="col-sm-6 form-container">
           <h2>Create your widget</h2>
 
-          <form>
+          <form class="form-horizontal">
             <div class="form-group">
-              <label class="control-label">Source</label>
+              <div class="col-xs-12"><hr/></div>
 
-              <input type="url" name="source" class="form-control" placeholder="https://apiembed.com/sample.json" value="https://apiembed.com/sample.json"/>
+              <label class="control-label col-sm-2">Source:</label>
+
+              <div class="col-sm-10">
+                <input type="url" name="source" class="form-control" placeholder="https://apiembed.com/sample.json" value="https://apiembed.com/sample.json"/>
+              </div>
+            </div>
+
+            <div class="form-group" id="targets">
+              <div class="col-xs-12"><hr/></div>
+
+              <label class="control-label col-xs-12">Targets:</label>
+
+              <div class="checkbox col-xs-6 col-sm-3 col-md-2"><label><input type="checkbox" name="target" value="all" data-all> All</label></div>
             </div>
 
             <div class="form-group">
-              <label class="control-label">Targets</label>
+              <div class="col-xs-12"><hr/></div>
 
-              <div id="targets">
-                <label class="checkbox-inline"><input type="checkbox" name="target" value="all"> All</label>
+              <label class="control-label col-sm-2">Height:</label>
+
+              <div class="col-sm-4">
+                <input class="form-control" type="text" data-name="height" value="300px"/>
+              </div>
+
+              <label class="control-label col-sm-2">Width:</label>
+
+              <div class="col-sm-4">
+                <input class="form-control" type="text" data-name="width" value="100%"/>
               </div>
             </div>
 
             <div class="form-group">
-              <label class="control-label">Embed Code</label>
+              <div class="col-xs-12"><hr/></div>
 
-              <textarea id="embedcode" class="form-control" rows="3"></textarea>
-            </div>
+              <label class="control-label col-xs-12">Embed Code:</label>
 
-            <div class="form-group">
-              <div class="col-sm-offset-2 col-sm-10">
-                <button class="btn btn-default btn-clipboard" data-clipboard-target="embedcode"><i class="fa fa-copy"></i> Copy</button>
+              <div class="col-xs-12">
+                <textarea id="embedcode" class="form-control" rows="5"></textarea>
               </div>
             </div>
+
+            <button class="btn btn-default btn-clipboard" data-clipboard-target="embedcode">Copy Embed Code</button>
           </form>
         </div>
 
-        <div class="col-sm-6">
+        <div class="col-sm-6 preview-container">
           <h2>Preview</h2>
+
           <div id="preview">
-            <iframe src="//api.apiembed.com/?source=https://apiembed.com/sample.json" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" width="100%" height="350" seamless></iframe>
+            <iframe src="//api.apiembed.com/?source=https://apiembed.com/sample.json" frameborder="0" scrolling="no" width="100%" height="350" seamless></iframe>
           </div>
         </div>
       </div>
     </div>
 
-    <footer>
-      <nav class="navbar navbar-default">
-        <div class="container">
-          <ul class="nav navbar-nav hidden-xs">
-            <li><a href="https://github.com/ahmadnassri/apiembed.com/">Open Source</a></li>
-            <li><a href="https://github.com/ahmadnassri/apiembed.com/issues">Issues</a></li>
-            <li><a href="https://github.com/ahmadnassri/apiembed.com/watchers">Watch</a></li>
-            <li><a href="https://github.com/ahmadnassri/apiembed.com/stargazers">Star</a></li>
-            <li><a href="https://github.com/ahmadnassri/apiembed.com/network">Fork</a></li>
-          </ul>
+    <hr/>
 
-          <ul class="nav navbar-nav navbar-right">
-            <li class="text-muted"><a href="https://www.Mashape.com">Made with &hearts; at <span>Mashape</span></a></li>
+    <div id="docs" class="container">
+      <h2>Customizing Your Widget</h2>
+
+      <h3>Widget Anatomy</h3>
+
+      <pre class="text-muted">&lt;iframe src="//api.apiembed.com/<span class="text-primary">?source=</span><span class="text-danger">https://apiembed.com/sample.json</span><span class="text-primary">&amp;target=</span><span class="text-success">all</span> frameborder="0" scrolling="no" width="100%" height="350" seamless&gt;&lt;/iframe&gt;</pre>
+
+      <table class="table table-hover">
+        <tr>
+          <td class="text-danger"><samp>source</samp></td>
+          <td>Source URL, a <a href="http://www.softwareishard.com/blog/har-12-spec/#request">HAR Request object</a> as the http request description format</td>
+        </tr>
+        <tr>
+          <td class="text-success"><samp>target</samp></td>
+          <td>A query array of all the desired targets, current available values: <span id="target-list"></span></td>
+        </tr>
+      </table>
+
+      <h3>We &hearts; Open Source</h3>
+
+      <p>This website, and the APIembed api are <a href="https://github.com/mashape/apiembed/">open source</a>, we'd love to hear your feedback and suggestions! head over to the project's <a href="https://github.com/mashape/apiembed/issues">github issues</a> and leave us your thoughts, comments and issues.</p>
+      <p>The target transformation is powered by <a href="https://www.npmjs.com/package/httpsnippet">httpsnippet</a>, for any issues with the target syntax, or for additional target requests, please visit the <a href="https://github.com/ahmadnassri/httpsnippet">project home</a> and submit issues there.
+    </div>
+
+    <footer>
+      <nav class="navbar navbar-default navbar-fixed-bottom">
+        <div class="container">
+          <div class="navbar-header">
+            <div class="navbar-brand">
+              <a href="/">
+                <img src="logo-small.svg"/>
+                <strong>API</strong>Embed
+              </a>
+
+              <small class="text-muted">by <a href="https://www.Mashape.com">Mashape</a></small>
+            </div>
+          </div>
+
+          <ul class="nav navbar-nav navbar-right hidden-xs">
+            <li><a href="https://github.com/mashape/apiembed/">Open Source</a></li>
+            <li><a href="https://github.com/mashape/apiembed/issues">Issues</a></li>
+            <li><a href="https://github.com/mashape/apiembed/stargazers">Star</a></li>
           </ul>
         </div>
       </nav>
@@ -241,39 +375,45 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/zeroclipboard/2.2.0/ZeroClipboard.min.js"></script>
 
     <script type="text/javascript">
-      function setupGoogleAnalytics () {
-        window.GoogleAnalyticsObject = 'ga';
+      !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.0.1";
+        analytics.load('fYxpXZPudo01O1yKVau7D2PqTSSLqUHz');
+        analytics.page();
+      }}();
+    </script>
 
-        window.ga = function () {
-          window.ga.q.push(arguments);
-        };
-
-        window.ga.q = [
-          ['create', 'UA-XXX', 'apiembed.com'], // TODO
-          ['require', 'displayfeatures'],
-          ['require', 'linkid', 'linkid.js'],
-          ['send', 'pageview']
-        ];
-
-        window.ga.l = (new Date()).getTime();
-      }
-
+    <script type="text/javascript">
       function formHandler () {
         $('form').on('submit', function (event) {
           event.preventDefault();
         });
 
-        $('form input[type=checkbox][value=all]').on('change', function () {
-          $('form input[type=checkbox][value!=all]').each(function () {
-            this.checked = false;
-            this.disabled = !this.disabled;
+        $('form').on('change', 'input[type=checkbox][data-all]', function () {
+          $(this).parents('.form-group').find('input[type=checkbox]:not([data-all])').prop({
+            checked: false,
+            disabled: this.checked
           });
+        });
+
+        $('form').on('change', 'input[data-family]', function () {
+          var family = $(this).data('family');
+
+          var container = $('.form-group[data-family="' + family + '"]').toggle();
+
+          container.find('input[type="checkbox"]').prop({
+            checked: false,
+            disabled: !this.checked
+          });
+
+          container.find('input[type="checkbox"]:not([data-all]):first').prop('checked', true);
         });
 
         $('form').on('keyup keypress change', 'input', function () {
           var query = $('form').serialize();
 
-          var code = '<iframe src="//api.apiembed.com/?' + query + '" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" width="100%" height="350" seamless></iframe>';
+          var width = $('input[data-name="width"]').val();
+          var height = $('input[data-name="height"]').val();
+
+          var code = '<iframe src="//api.apiembed.com/?' + query + '" frameborder="0" scrolling="no" width="' + width + '" height="' + height + '" seamless></iframe>';
 
           $('#embedcode').val(code);
           $('#preview').html(code);
@@ -281,22 +421,27 @@
       }
 
       function loadTargets () {
-        $.getJSON('//api.apiembed.com/targets', function (targets) {
-          var items = [];
+        $.getJSON('//api.apiembed.com/targets', function (results) {
+          var targets = $('#targets');
 
-          $.each(targets, function (key, target) {
-            if (target.family) {
-              $.each(target.members, function (key, member) {
-                items.push('<label class="checkbox-inline"><input type="checkbox" name="target" value="' + target.family + '-' + member.key + '"> ' + target.family + ': ' + member.title + '</label>');
+          $.each(results, function (key, target) {
+            $('<div class="checkbox col-xs-6 col-sm-3 col-md-2"><label><input type="checkbox" name="' + (target.family ? '' : 'target') +'" value="' + (target.key || '') + '" data-family="' + (target.family || '') + '"> ' + (target.title || target.family) + '</label></div>').appendTo(targets);
+
+            if (!target.family) {
+              $('#target-list').append('<kbd>' + target.key + '</kbd>');
+            } else {
+              var family = target.family;
+              var members = $('<div class="form-group" data-family="' + target.family + '"><div class="col-xs-12"><hr/></div><label class="control-label col-xs-12">' + target.family + ':</label><div class="row"></div></div>').insertAfter(targets);
+
+              $('<div class="checkbox col-xs-6 col-sm-3 col-md-2"><label><input type="checkbox" name="target" value="' + family + '" data-all> All</label></div>').appendTo(members);
+
+              $.each(target.members, function (key, target) {
+                $('<div class="checkbox col-xs-6 col-sm-3 col-md-2"><label><input type="checkbox" name="target" value="' + family + '-' + target.key + '"> ' + target.title + '</label></div>').appendTo(members);
+
+                $('#target-list').append('<kbd>' + family + '-' + target.key + '</kbd>');
               });
-
-              return;
             }
-
-            items.push('<label class="checkbox-inline"><input type="checkbox" name="target" value="' + target.key + '"> ' + target.title + '</label>');
           });
-
-          $('#targets').append(items.join(''));
         });
       }
 
@@ -304,13 +449,11 @@
         ZeroClipboard.config({
           swfPath: '//cdnjs.cloudflare.com/ajax/libs/zeroclipboard/2.2.0/ZeroClipboard.swf',
           forceHandCursor: true,
-          trustedDomains: [window.location.host, "cdnjs.cloudflare.com"]
+          trustedDomains: [window.location.host, 'cdnjs.cloudflare.com']
         });
 
         new ZeroClipboard($('.btn-clipboard'));
       }
-
-      $(document).ready(setupGoogleAnalytics);
 
       $(document).ready(loadTargets);
 
