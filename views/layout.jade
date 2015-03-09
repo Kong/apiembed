@@ -65,6 +65,8 @@ html(lang='en', itemscope, itemtype='http://schema.org/Product')
       }
 
       #embed {
+        position: relative;
+
         border-radius: 4px;
         border: 1px solid #C7C7C7;
         border: 1px solid rgba(0, 0, 0, .22);
@@ -91,17 +93,30 @@ html(lang='en', itemscope, itemtype='http://schema.org/Product')
         color: #8C9093;
         font-size: 13px;
         font-weight: 600;
+
         padding: 16px;
+        margin-right: 0;
       }
 
-      #embed .nav-tabs > li a:hover {
+      #embed .nav-tabs > li:not(.active) a:hover {
         color: #41484C;
-        background-color: #FCFCFC;
+        border-color: transparent;
+        background-color: transparent;
       }
 
       #embed .nav-tabs .open > a {
         border-color: #E6E6E6;
         background-color: #FCFCFC;
+      }
+
+      #embed .nav-tabs {
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
+      }
+
+      #embed .nav-tabs > li:first-of-type > a {
+        border-left: none;
+        border-top-left-radius: 4px;
       }
 
       #embed .nav-tabs > li.active > a,
@@ -138,21 +153,7 @@ html(lang='en', itemscope, itemtype='http://schema.org/Product')
         margin-top: 0;
 
         background-color: #FCFCFC;
-        box-shadow: 1px 0px 4px rgba(0, 0, 0, .15);
-      }
-
-      #embed .nav-tabs {
-        border-top-left-radius: 4px;
-        border-top-right-radius: 4px;
-      }
-
-      #embed .nav-tabs > li:hover a {
-        background-color: #FFFFFF;
-      }
-
-      #embed .nav-tabs > li:first-of-type > a {
-        border-left: none;
-        border-top-left-radius: 4px;
+        box-shadow: 0 3px 3px rgba(0, 0, 0, .15);
       }
 
       #embed .tab-content .tab-pane,
@@ -161,13 +162,9 @@ html(lang='en', itemscope, itemtype='http://schema.org/Product')
         height: 100%;
       }
 
-      #embed .tab-content .tab-pane {
-        position: relative;
-      }
-
       #embed .tab-content .tab-pane .btn-clipboard {
         position: absolute;
-        top: 5px;
+        bottom: 5px;
         right: 5px;
 
         color: #AAAFB3;
@@ -224,7 +221,24 @@ html(lang='en', itemscope, itemtype='http://schema.org/Product')
 
     block scripts
 
+
+
     script(type='text/javascript').
+      function resize () {
+        // calculate the new height
+        var height = $(window).height();
+
+        height -= $('.nav').height();
+        height -= $('footer:visible').height();
+        height -= parseInt($('code:first-of-type').css('padding-top')) * 2;
+
+        // adjust the height
+        $('.tab-content').height(height);
+      }
+
+      $(document).ready(resize);
+      $(window).resize(resize);
+
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
       ga('create', 'UA-XXXX', 'apiemebd.com');
       ga('require', 'displayfeatures');

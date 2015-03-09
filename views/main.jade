@@ -7,6 +7,9 @@ block content
         if (typeof code === 'string')
           li: a(href='##{target}', data-toggle='tab')= httpsnippet.info(target).title
 
+        else if (Object.keys(code).length === 1)
+          li: a(href='##{target}-#{Object.keys(code)[0]}', data-toggle='tab')= httpsnippet._familyInfo(target).title
+
         else
           li.dropdown
             a.dropdown-toggle(href='#', data-toggle='dropdown')
@@ -22,16 +25,17 @@ block content
       each code, target in output
         if (typeof code === 'string')
           div.tab-pane(id= target).fade
-            button(class='btn btn-default btn-clipboard', data-clipboard-target='#{target}'): i.fa.fa-copy
+            button(class='btn btn-default btn-xs btn-clipboard', data-clipboard-target='#{target}'): #[i.fa.fa-copy] Copy to Clipboard
             pre: code= code
 
         else
           each _code, _target in code
             div.tab-pane(id='#{target}-#{_target}').fade
-              button(class='btn btn-default btn-clipboard', data-clipboard-target='#{target}-#{_target}'): i.fa.fa-copy
+              button(class='btn btn-default btn-xs btn-clipboard', data-clipboard-target='#{target}-#{_target}'): #[i.fa.fa-copy] Copy to Clipboard
               pre: code= _code
 
-    footer Powered by #[a(href="https://apiembed.com/") APIembed], made with &hearts; at #[a(href="https://www.mashape.com/") Mashape].
+    footer.hidden-xs Powered by #[a(href="https://apiembed.com/") APIembed], made with &hearts; at #[a(href="https://www.mashape.com/") Mashape].
+    footer.visible-xs #[a(href="https://apiembed.com/") APIembed] by #[a(href="https://www.mashape.com/") Mashape].
 
 block scripts
   script(type='text/javascript').
@@ -52,18 +56,3 @@ block scripts
         hljs.highlightBlock(block);
       });
     });
-
-    function resize () {
-      // calculate the new height
-      var height = $(window).height();
-
-      height -= $('.nav').height();
-      height -= $('footer').height();
-      height -= parseInt($('code:first-of-type').css('padding-top')) * 2;
-
-      // adjust the height
-      $('.tab-content').height(height);
-    }
-
-    $(document).ready(resize);
-    $(window).resize(resize);
