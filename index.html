@@ -13,8 +13,8 @@
     <meta property="og:title"         content="APIEmbed by Mashape"/>
     <meta name="twitter:title"        content="APIEmbed by Mashape"/>
 
-    <link rel="author"                href="https://www.ahmadnassri.com/about"/>
-    <meta name="author"               content="Ahmad Nassri"/>
+    <link rel="author"                href="https://www.mashape.com/"/>
+    <meta name="author"               content="Mashape"/>
     <meta name="twitter:creator"      content="@Mashape"/>
 
     <meta name="description"          content="Embeddable API snippets for your website, blog or API documentation. Made with Love by Mashape."/>
@@ -193,7 +193,7 @@
         margin-bottom: 0;
       }
 
-      .form-group[data-family] {
+      .form-group[data-clients] {
         display: none;
       }
 
@@ -277,7 +277,7 @@
         </div>
 
         <div class="navbar-text navbar-right hidden-xs">
-          <a class="twitter-share-button" href="https://twitter.com/share" data-url="https://apiembed.com" data-via="Mashape" data-related="AhmadNassri" data-hashtags="API, HTTP, Embed" data-dnt="true">Tweet</a>
+          <a class="twitter-share-button" href="https://twitter.com/share" data-url="https://apiembed.com" data-via="Mashape" data-hashtags="API, HTTP, Embed" data-dnt="true">Tweet</a>
           <a class="github-button" href="https://github.com/mashape/apiembed" data-icon="octicon-star", data-count-href="/mashape/apiembed/stargazers" data-count-api="/repos/mashape/apiembed#stargazers_count">Star</a>
       </div>
     </nav>
@@ -366,7 +366,7 @@
 
       <h3>Widget Anatomy</h3>
 
-      <pre class="text-muted">&lt;iframe src="//api.apiembed.com/<span class="text-primary">?source=</span><span class="text-danger">https://apiembed.com/sample.json</span><span class="text-primary">&amp;target=</span><span class="text-success">all</span> frameborder="0" scrolling="no" width="100%" height="350" seamless&gt;&lt;/iframe&gt;</pre>
+      <pre class="text-muted">&lt;iframe src="//api.apiembed.com/<span class="text-primary">?source=</span><span class="text-danger">https://apiembed.com/sample.json</span><span class="text-primary">&amp;targets=</span><span class="text-success">all</span> frameborder="0" scrolling="no" width="100%" height="350" seamless&gt;&lt;/iframe&gt;</pre>
 
       <table class="table table-hover">
         <tr>
@@ -374,10 +374,13 @@
           <td>Source URL, a <a href="http://www.softwareishard.com/blog/har-12-spec/#request">HAR Request object</a> as the http request description format</td>
         </tr>
         <tr>
-          <td class="text-success"><samp>target</samp></td>
-          <td>A query array of all the desired targets, current available values: <span id="target-list"></span></td>
+          <td class="text-success"><samp>targets</samp></td>
+          <td>An ordered comma separated list of all the desired targets, current available values: <span id="target-list"></span></td>
         </tr>
       </table>
+
+      <strong>Note:</strong>
+      <p><em>The oder of the targets list will determine the tab output order of the widget</em></p>
 
       <h3>We &hearts; Open Source</h3>
 
@@ -424,12 +427,22 @@
 
     <script type="text/javascript">
       function generateWidget () {
-        var query = $('form').serialize();
+        var requested = [];
+        var source = $('form input[name="source"]').val();
+        var targets = $('form input[name="target"]').serializeArray();
+
+        $.each(targets, function(key, target) {
+          requested.push(target.value);
+        });
+
+        if (requested.length === 0) {
+          requested = ['all'];
+        }
 
         var width = $('input[data-name="width"]').val();
         var height = $('input[data-name="height"]').val();
 
-        var code = '<iframe src="//api.apiembed.com/?' + query + '" frameborder="0" scrolling="no" width="' + width + '" height="' + height + '" seamless></iframe>';
+        var code = '<iframe src="//api.apiembed.com/?source=' + source + '&targets=' + requested.join(',') + '" frameborder="0" scrolling="no" width="' + width + '" height="' + height + '" seamless></iframe>';
 
         $('#embedcode').val(code);
         $('#preview').html(code);
@@ -447,10 +460,10 @@
           });
         });
 
-        $('form').on('change', 'input[data-family]', function () {
-          var family = $(this).data('family');
+        $('form').on('change', 'input[data-clients]', function () {
+          var clients = $(this).data('clients');
 
-          var container = $('.form-group[data-family="' + family + '"]').toggle();
+          var container = $('.form-group[data-clients="' + clients + '"]').toggle();
 
           container.find('input[type="checkbox"]').prop({
             checked: false,
@@ -468,20 +481,19 @@
           var targets = $('#targets');
 
           $.each(results, function (key, target) {
-            $('<div class="checkbox col-xs-6 col-sm-3 col-md-2"><label><input type="checkbox" name="' + (target.family ? '' : 'target') +'" value="' + (target.key || '') + '" data-family="' + (target.family || '') + '"> ' + (target.title || target.family) + '</label></div>').appendTo(targets);
+            $('<div class="checkbox col-xs-6 col-sm-3 col-md-2"><label><input type="checkbox" name="' + (!target.clients ? 'target' : '') + '" value="' + target.key + '" data-clients="' + (target.clients ? target.key : '') + '"> ' + target.title + '</label></div>').appendTo(targets);
 
-            if (!target.family) {
+            if (!target.clients) {
               $('#target-list').append('<kbd>' + target.key + '</kbd>');
             } else {
-              var family = target.family;
-              var members = $('<div class="form-group" data-family="' + target.family + '"><div class="col-xs-12"><hr/></div><label class="control-label col-xs-12">' + target.family + ':</label><div class="row"></div></div>').insertAfter(targets);
+              var clients = $('<div class="form-group" data-clients="' + target.key + '"><div class="col-xs-12"><hr/></div><label class="control-label col-xs-12">' + target.title + ':</label><div class="row"></div></div>').insertAfter(targets);
 
-              $('<div class="checkbox col-xs-6 col-sm-3 col-md-2"><label><input type="checkbox" name="target" value="' + family + '" data-all> All</label></div>').appendTo(members);
+              $('<div class="checkbox col-xs-6 col-sm-3 col-md-2"><label><input type="checkbox" name="target" value="' + target.key + ':all" data-all> All</label></div>').appendTo(clients);
 
-              $.each(target.members, function (key, target) {
-                $('<div class="checkbox col-xs-6 col-sm-3 col-md-2"><label><input type="checkbox" name="target" value="' + family + '-' + target.key + '"> ' + target.title + '</label></div>').appendTo(members);
+              $.each(target.clients, function (key, client) {
+                $('<div class="checkbox col-xs-6 col-sm-3 col-md-2"><label><input type="checkbox" name="target" value="' + target.key + ':' + client.key + '"> ' + client.title + '</label></div>').appendTo(clients);
 
-                $('#target-list').append('<kbd>' + family + '-' + target.key + '</kbd>');
+                $('#target-list').append('<kbd>' + target.key + ':' + client.key + '</kbd>');
               });
             }
           });
