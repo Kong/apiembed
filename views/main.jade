@@ -35,7 +35,7 @@ block content
               li: a(href='##{target}', data-toggle='tab') #[i.fa.fa-check] #[= namedTargets[target].title]
 
             else if (clients.length === 1)
-              li: a(href='##{target}-#{clients[0]}', data-toggle='tab')= namedTargets[target].title
+              li: a(href='##{target}-#{clients[0]}', data-toggle='tab') #[i.fa.fa-check] #[= namedTargets[target].title]
 
             else
               li.dropdown-header= namedTargets[target].title
@@ -93,6 +93,8 @@ block scripts
         } else {
           $('.btn-dropdown').addClass('hidden');
         }
+
+        $('.dropdown-menu').css('max-height', $(this).height() - 100)
       }).resize();
 
       $('.btn-dropdown a[data-toggle="tab"]').on('click', function (e) {
