@@ -205,7 +205,8 @@ app.use(function errorHandler(error, req, res, next) {
     error.message += ', please review the <a href="/" target="_top">documentation</a> and try again';
   }
 
-  res.status(error.code);
+  // never show a 40x
+  res.status(200);
   res.render('error', error);
 });
 
