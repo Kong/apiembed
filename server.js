@@ -135,7 +135,6 @@ app.get('/', function (req, res, next) {
         requested[target] = true;
       }
 
-      console.log(requested);
       return requested;
 
     }
