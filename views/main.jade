@@ -71,7 +71,7 @@ block scripts
       new ZeroClipboard($('.btn-clipboard'));
 
       // select first tab
-      $('.nav-tabs a:first').tab('show');
+      $('.nav-tabs a[data-toggle="tab"]:first').tab('show');
 
       $(window).resize(function(){
         var totalWidth = 0;
@@ -82,8 +82,6 @@ block scripts
           var link = tab.find('a');
 
           totalWidth += tab.width();
-
-          console.log(link.attr('href'));
 
           if (tab.position().left + 100 > windowWidth) {
             tab.addClass('hidden');

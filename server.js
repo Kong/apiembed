@@ -127,7 +127,7 @@ app.get('/', function (req, res, next) {
           }, {});
         } else {
           if (availableTargets[target].hasOwnProperty(client)) {
-            requested[target] = {};
+            requested[target] = requested[target] ? requested[target] : {};
             requested[target][client] = true;
           }
         }
@@ -135,7 +135,9 @@ app.get('/', function (req, res, next) {
         requested[target] = true;
       }
 
+      console.log(requested);
       return requested;
+
     }
 
     return requested;
