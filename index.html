@@ -318,7 +318,7 @@
 
               <label class="control-label col-xs-12">Targets:</label>
 
-              <div class="checkbox col-xs-6 col-sm-3 col-md-2"><label><input type="checkbox" name="target" value="all" data-all> All</label></div>
+              <div class="checkbox col-xs-6 col-sm-3 col-md-3"><label><input type="checkbox" name="target" value="all" data-all> All</label></div>
             </div>
 
             <div class="form-group">
@@ -481,17 +481,17 @@
           var targets = $('#targets');
 
           $.each(results, function (key, target) {
-            $('<div class="checkbox col-xs-6 col-sm-3 col-md-2"><label><input type="checkbox" name="' + (!target.clients ? 'target' : '') + '" value="' + target.key + '" data-clients="' + (target.clients ? target.key : '') + '"> ' + target.title + '</label></div>').appendTo(targets);
+            $('<div class="checkbox col-xs-6 col-sm-3 col-md-3"><label><input type="checkbox" name="' + (!target.clients ? 'target' : '') + '" value="' + target.key + '" data-clients="' + (target.clients ? target.key : '') + '"> ' + target.title + '</label></div>').appendTo(targets);
 
             if (!target.clients) {
               $('#target-list').append('<kbd>' + target.key + '</kbd>');
             } else {
               var clients = $('<div class="form-group" data-clients="' + target.key + '"><div class="col-xs-12"><hr/></div><label class="control-label col-xs-12">' + target.title + ':</label><div class="row"></div></div>').insertAfter(targets);
 
-              $('<div class="checkbox col-xs-6 col-sm-3 col-md-2"><label><input type="checkbox" name="target" value="' + target.key + ':all" data-all> All</label></div>').appendTo(clients);
+              $('<div class="checkbox col-xs-6 col-sm-3 col-md-3"><label><input type="checkbox" name="target" value="' + target.key + ':all" data-all> All</label></div>').appendTo(clients);
 
               $.each(target.clients, function (key, client) {
-                $('<div class="checkbox col-xs-6 col-sm-3 col-md-2"><label><input type="checkbox" name="target" value="' + target.key + ':' + client.key + '"> ' + client.title + '</label></div>').appendTo(clients);
+                $('<div class="checkbox col-xs-6 col-sm-3 col-md-3"><label><input type="checkbox" name="target" value="' + target.key + ':' + client.key + '"> ' + client.title + '</label></div>').appendTo(clients);
 
                 $('#target-list').append('<kbd>' + target.key + ':' + client.key + '</kbd>');
               });
