@@ -8,14 +8,38 @@ var morgan      = require('morgan');
 var unirest     = require('unirest');
 var util        = require('util');
 
-var availableTargets = httpsnippet._targets().map(function (target) {
-  return httpsnippet.info(target);
-});
+var availableTargets = httpsnippet.availableTargets().reduce(function (targets, target) {
+  if (target.clients) {
+    targets[target.key] = target.clients.reduce(function (clients, client) {
+      clients[client.key] = false;
+      return clients;
+    }, {});
+  } else {
+    targets[target.key] = false;
+  }
+
+  return targets;
+}, {});
+
+var namedTargets = httpsnippet.availableTargets().reduce(function (targets, target) {
+  if (target.clients) {
+    targets[target.key] = target;
+
+    targets[target.key].clients = target.clients.reduce(function (clients, client) {
+      clients[client.key] = client;
+      return clients;
+    }, {});
+  } else {
+    targets[target.key] = target;
+  }
+
+  return targets;
+}, {});
 
 var APIError = function  (code, message) {
   this.name = 'APIError';
-  this.code = (code || 500);
-  this.message = (message || 'Oops, something went wrong!');
+  this.code = code || 500;
+  this.message = message || 'Oops, something went wrong!';
 };
 
 APIError.prototype = Error.prototype;
@@ -40,6 +64,7 @@ app.use(compression());
 
 // useful to get info in the view
 app.locals.httpsnippet = httpsnippet;
+app.locals.namedTargets = namedTargets;
 
 // enable CORS
 app.use(function(req, res, next) {
@@ -55,60 +80,67 @@ app.use('/favicon.ico', function (req, res) {
 
 // static middleware does not work here
 app.use('/targets', function (req, res) {
-  res.json(availableTargets);
+  res.json(httpsnippet.availableTargets());
 });
 
-app.get('/:source?/:targets?', function (req, res, next) {
-  var source = decodeURIComponent(req.params.source || req.query.source);
-  var targets = req.params.targets || req.query.target;
-
-  if (!targets) {
-    targets = 'all';
-  }
+app.get('/', function (req, res, next) {
+  var source = decodeURIComponent(req.query.source);
+  var targets = req.query.targets || 'all';
 
   if (!source) {
     return next(new APIError(400, 'Invalid input'));
   }
 
-  debug('recieved request for source: %s & targets: %s', source, targets);
+  debug('received request for source: %s & targets: %s', source, targets);
 
-  // force formatting
-  if (!util.isArray(targets)) {
-    targets = new Array(targets);
-  }
+  // parse the requested targets
+  // TODO this needs optimization
+  var requestedTargets = targets.split(',').reduce(function (requested, part) {
+    var i = part.split(':');
 
-  // overwrite targets if "all" is chosen
-  if (~targets.indexOf('all')) {
-    targets = [];
+    var target = i[0] || 'all';
+    var client = i[1] || 'all';
 
-    availableTargets.map(function (target) {
-      if (!target.members) {
-        return targets.push(target.key);
-      }
+    // all targets
+    if (target === 'all') {
+      // set all members to true
+      return Object.keys(availableTargets).reduce(function (requested, target) {
+        if (typeof availableTargets[target] === 'object') {
+          requested[target] = Object.keys(availableTargets[target]).reduce(function (clients, client) {
+            clients[client] = true;
+            return clients;
+          }, {});
+        } else {
+          requested[target] = true;
+        }
 
-
-      target.members.map(function (member) {
-        targets.push(target.family + '-' + member.key);
-      });
-    });
-  }
-
-  // construct family-target pair
-  var conversionTargets = targets.map(function (target) {
-    var result = target.split('-');
-
-    if (result.length > 1) {
-      return {
-        family: result[0],
-        key: result[1]
-      };
+        return requested;
+      }, {});
     }
 
-    return {
-      family: result[0]
-    };
-  });
+    // all clients?
+    if (availableTargets.hasOwnProperty(target)) {
+      if (typeof availableTargets[target] === 'object') {
+        if (client === 'all') {
+          requested[target] = Object.keys(availableTargets[target]).reduce(function (clients, client) {
+            clients[client] = true;
+            return clients;
+          }, {});
+        } else {
+          if (availableTargets[target].hasOwnProperty(client)) {
+            requested[target] = {};
+            requested[target][client] = true;
+          }
+        }
+      } else {
+        requested[target] = true;
+      }
 
+      return requested;
+    }
+
+    return requested;
+  }, {});
 
   unirest.get(source)
     .headers({'Accept': 'application/json'})
@@ -140,17 +172,18 @@ app.get('/:source?/:targets?', function (req, res, next) {
         return next(new APIError(400, err));
       }
 
-      conversionTargets.map(function (target) {
-        if (!target.key) {
-          return output[target.family] = snippet.convert(target.family, target.key);
+      Object.keys(requestedTargets).map(function (target) {
+        if (typeof requestedTargets[target] === 'object') {
+          output[target] = {};
+
+          return Object.keys(requestedTargets[target]).map(function (client) {
+            output[target][client] = snippet.convert(target, client);
+          });
         }
 
-        if (target.key && !output[target.family]) {
-          output[target.family] = {};
-        }
-
-        return output[target.family][target.key] = snippet.convert(target.family, target.key);
+        output[target] = snippet.convert(target);
       });
+
 
       if (Object.keys(output).length === 0) {
         debug('no matching targets found');

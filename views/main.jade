@@ -4,34 +4,36 @@ block content
   div#embed
     ul.nav.nav-tabs
       each code, target in output
-        if (typeof code === 'string')
-          li: a(href='##{target}', data-toggle='tab')= httpsnippet.info(target).title
+        - var clients = (typeof code === 'string') ? false : Object.keys(code)
 
-        else if (Object.keys(code).length === 1)
-          li: a(href='##{target}-#{Object.keys(code)[0]}', data-toggle='tab')= httpsnippet._familyInfo(target).title
+        if (!clients)
+          li: a(href='##{target}', data-toggle='tab')= namedTargets[target].title
+
+        else if (clients.length === 1)
+          li: a(href='##{target}-#{clients[0]}', data-toggle='tab')= namedTargets[target].title
 
         else
           li.dropdown
             a.dropdown-toggle(href='#', data-toggle='dropdown')
-              span= httpsnippet._familyInfo(target).title
+              span= namedTargets[target].title
               span &nbsp;
               span.caret
 
             ul.dropdown-menu
-              each _code, _target in code
-                li: a(href='##{target}-#{_target}', data-toggle='tab') #[i.fa.fa-check] #[= httpsnippet.info(target, _target).title]
+              each _code, client in code
+                li: a(href='##{target}-#{client}', data-toggle='tab') #[i.fa.fa-check] #[= namedTargets[target].clients[client].title]
 
     div.tab-content
       each code, target in output
         if (typeof code === 'string')
           div.tab-pane(id= target).fade
-            button(class='btn btn-default btn-xs btn-clipboard', data-clipboard-target='#{target}'): #[i.fa.fa-copy] Copy to Clipboard
+            button(class='btn btn-default btn-xs btn-clipboard', data-clipboard-target='#{target}'): #[i.fa.fa-copy] #[span Copy to Clipboard]
             pre: code= code
 
         else
           each _code, _target in code
             div.tab-pane(id='#{target}-#{_target}').fade
-              button(class='btn btn-default btn-xs btn-clipboard', data-clipboard-target='#{target}-#{_target}'): #[i.fa.fa-copy] Copy to Clipboard
+              button(class='btn btn-default btn-xs btn-clipboard', data-clipboard-target='#{target}-#{_target}'): #[i.fa.fa-copy] #[span Copy to Clipboard]
               pre: code= _code
 
     footer.hidden-xs Powered by #[a(href="https://apiembed.com/") APIembed], made with &hearts; at #[a(href="https://www.mashape.com/") Mashape].
