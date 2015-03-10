@@ -1,6 +1,5 @@
 - var title = 'API Embed';
 - var description = 'Embeddable API snippets';
-- var author = 'Ahmad Nassri';
 
 doctype html
 html(lang='en', itemscope, itemtype='http://schema.org/Product')
@@ -12,7 +11,7 @@ html(lang='en', itemscope, itemtype='http://schema.org/Product')
     meta(name='robots', content='index,follow')
     meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no')
 
-    meta(name='author', content= author)
+    meta(name='author', content= 'Mashape')
     meta(name='description', content= description)
 
     meta(itemprop='name', content='')
@@ -25,10 +24,10 @@ html(lang='en', itemscope, itemtype='http://schema.org/Product')
     meta(property='fb:admins', content='227304446')
 
     meta(name='twitter:card', content='summary')
-    meta(name='twitter:site', content='@ahmadnassri')
+    meta(name='twitter:site', content='@mashape')
     meta(name='twitter:title', content= title)
     meta(name='twitter:description', content= description)
-    meta(name='twitter:creator', content='@ahmadnassri')
+    meta(name='twitter:creator', content='@mashapei')
     meta(name='twitter:url', content='https://apiembed.com')
     meta(name='twitter:domain', content='apiemebd.com')
 
@@ -37,7 +36,7 @@ html(lang='en', itemscope, itemtype='http://schema.org/Product')
 
     link(rel='shortcut icon', href='/favicon.ico')
     link(rel='canonical', href='https://apiembed.com/')
-    link(rel='author', href='https://www.ahmadnassri.com/about')
+    link(rel='author', href='https://www.mashape.com')
 
     link(rel='stylesheet', type='text/css', href='https://fonts.googleapis.com/css?family=Open+Sans:400,600|Source+Code+Pro:200,300,400,500,600,700,900', media='all')
     link(rel='stylesheet', type='text/css', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css', media='all')
@@ -79,9 +78,21 @@ html(lang='en', itemscope, itemtype='http://schema.org/Product')
         background-clip: padding-box;
       }
 
-      #embed .nav-tabs {
-        border-color: #EAEAEA;
+      #embed header {
+        height: 50px;
+        border-bottom: 1px solid #EAEAEA;
         background-color: #FCFCFC;
+      }
+
+      #embed .nav-tabs {
+        border: 0;
+        height: 51px;
+        width: 10000px;
+        position: absolute;
+      }
+
+      #embed .nav-tabs > li {
+        margin-bottom: 0;
       }
 
       #embed .nav-tabs > li a,
@@ -100,8 +111,7 @@ html(lang='en', itemscope, itemtype='http://schema.org/Product')
 
       #embed .nav-tabs > li:not(.active) a:hover {
         color: #41484C;
-        border-color: transparent;
-        background-color: transparent;
+        background-color: #FCFCFC;
       }
 
       #embed .nav-tabs .open > a {
@@ -156,6 +166,46 @@ html(lang='en', itemscope, itemtype='http://schema.org/Product')
         box-shadow: 0 3px 3px rgba(0, 0, 0, .15);
       }
 
+      #embed .btn-dropdown {
+        position: absolute;
+        top: 0;
+        right: 0;
+      }
+
+      #embed .btn-dropdown .btn {
+        border: 0;
+        border-radius: 0;
+
+        padding: 15px;
+        background-color: transparent;
+      }
+
+      #embed .btn-dropdown .dropdown-menu .fa {
+        display: none;
+      }
+
+      #embed .btn-dropdown .dropdown-menu > .active .fa {
+        display: inline-block;
+      }
+
+      #embed .btn-dropdown .dropdown-menu > li > a {
+        padding: 10px;
+        color: #8C9093;
+      }
+
+
+      #embed .btn-dropdown .dropdown-menu > .dropdown-header {
+        padding: 10px;
+        font-weight: 700;
+      }
+
+      #embed .btn-dropdown .dropdown-menu > .active > a,
+      #embed .btn-dropdown .dropdown-menu > .active > a:focus,
+      #embed .btn-dropdown .dropdown-menu > .active > a:hover {
+        color: #216FA6;
+        background-color: #F2F9FF;
+      }
+
       #embed .tab-content .tab-pane,
       #embed .tab-content .tab-pane pre,
       #embed .tab-content .tab-pane pre code {
@@ -167,8 +217,11 @@ html(lang='en', itemscope, itemtype='http://schema.org/Product')
         bottom: 4px;
         right: 5px;
 
-        color: #399ee5;
         border-color: #D7D9DB;
+
+        color: #399ee5;
+        font-size: 11px;
+        font-weight: 600;
 
         padding: 3px 7px;
 
@@ -195,6 +248,10 @@ html(lang='en', itemscope, itemtype='http://schema.org/Product')
       }
 
       #embed footer a {
+        color: #7b858c;
+      }
+
+      #embed footer a:hover {
         color: #399ee5;
       }
 
@@ -222,8 +279,6 @@ html(lang='en', itemscope, itemtype='http://schema.org/Product')
     block content
 
     block scripts
-
-
 
     script(type='text/javascript').
       function resize () {

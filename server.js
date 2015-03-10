@@ -6,7 +6,6 @@ var express     = require('express');
 var httpsnippet = require('httpsnippet');
 var morgan      = require('morgan');
 var unirest     = require('unirest');
-var util        = require('util');
 
 var availableTargets = httpsnippet.availableTargets().reduce(function (targets, target) {
   if (target.clients) {
