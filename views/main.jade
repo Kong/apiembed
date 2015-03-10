@@ -15,7 +15,7 @@ block content
 
           else
             li.dropdown
-              a.dropdown-toggle(href='#', data-toggle='dropdown')
+              a.dropdown-toggle(href='##{target}', data-toggle='dropdown')
                 span= namedTargets[target].title
                 span &nbsp;
                 span.caret
@@ -32,16 +32,16 @@ block content
             - var clients = (typeof code === 'string') ? false : Object.keys(code)
 
             if (!clients)
-              li: a(href='##{target}', data-toggle='tab') #[i.fa.fa-check] #[= namedTargets[target].title]
+              li: a.hidden(href='##{target}', data-toggle='tab') #[i.fa.fa-check] #[= namedTargets[target].title]
 
             else if (clients.length === 1)
-              li: a(href='##{target}-#{clients[0]}', data-toggle='tab') #[i.fa.fa-check] #[= namedTargets[target].title]
+              li: a.hidden(href='##{target}-#{clients[0]}', data-toggle='tab') #[i.fa.fa-check] #[= namedTargets[target].title]
 
             else
-              li.dropdown-header= namedTargets[target].title
+              li.dropdown-header.hidden(data-clients= '#' + target + '-' + Object.keys(code).join(',#' + target + '-'))= namedTargets[target].title
 
               each _code, client in code
-                li: a(href='##{target}-#{client}', data-toggle='tab') #[i.fa.fa-check] #[= namedTargets[target].clients[client].title]
+                li: a.hidden(href='##{target}-#{client}', data-toggle='tab') #[i.fa.fa-check] #[= namedTargets[target].clients[client].title]
 
     div.tab-content
       each code, target in output
@@ -79,12 +79,22 @@ block scripts
 
         $('.nav-tabs > li').each(function() {
           var tab = $(this);
+          var link = tab.find('a');
+
           totalWidth += tab.width();
+
+          console.log(link.attr('href'));
 
           if (tab.position().left + 100 > windowWidth) {
             tab.addClass('hidden');
+
+            $('.btn-dropdown a[href*="' + link.attr('href') + '"]').removeClass('hidden');
+            $('.btn-dropdown li[data-clients*="' + link.attr('href') + '"]').removeClass('hidden');
           } else {
             tab.removeClass('hidden');
+
+            $('.btn-dropdown a[href*="' + link.attr('href') + '"]').addClass('hidden');
+            $('.btn-dropdown li[data-clients*="' + link.attr('href') + '"]').addClass('hidden');
           }
         });
 
