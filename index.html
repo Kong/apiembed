@@ -67,14 +67,6 @@
         margin-bottom: 25px;
       }
 
-      .table {
-        border-bottom: 1px solid #DDDDDD;
-      }
-
-      .table td {
-        padding: 15px;
-      }
-
       .navbar-default {
         border-color: #E6E9EB;
         background-color: #FFFFFF;
@@ -241,12 +233,28 @@
         margin: 0 0 20px 0;
       }
 
-      #docs table {
+      #docs dl {
         color: #435059;
+        border-top: 1px solid #DDDDDD;
+      }
+
+      #docs dl dd {
+        border-bottom: 1px solid #DDDDDD;
+      }
+
+      #docs dl dt {
+        padding-top: 15px;
+      }
+
+      #docs dl dt,
+      #docs dl dd {
+        padding-bottom: 15px;
       }
 
       #target-list kbd {
+        display: inline-block;
         margin-right: 5px;
+        margin-bottom: 5px;
       }
 
       footer .navbar-default .navbar-nav a {
@@ -381,16 +389,13 @@
 
       <pre class="text-muted">&lt;iframe src="//api.apiembed.com/<span class="text-primary">?source=</span><span class="text-danger">https://apiembed.com/sample.json</span><span class="text-primary">&amp;targets=</span><span class="text-success">all</span> frameborder="0" scrolling="no" width="100%" height="350" seamless&gt;&lt;/iframe&gt;</pre>
 
-      <table class="table table-hover">
-        <tr>
-          <td class="text-danger"><samp>source</samp></td>
-          <td>Source URL, a <a href="http://www.softwareishard.com/blog/har-12-spec/#request">HAR Request object</a> as the http request description format</td>
-        </tr>
-        <tr>
-          <td class="text-success"><samp>targets</samp></td>
-          <td>An ordered comma separated list of all the desired targets, current available values: <span id="target-list"></span></td>
-        </tr>
-      </table>
+      <dl>
+        <dt><samp class="text-danger">source</samp></dt>
+        <dd>Source URL, a <a href="http://www.softwareishard.com/blog/har-12-spec/#request">HAR Request object</a> as the http request description format</dd>
+
+        <dt><samp class="text-success">targets</samp></dt>
+        <dd>An ordered comma separated list of all the desired targets, current available values: <span id="target-list"></span></dd>
+      </dl>
 
       <strong>Note:</strong>
       <p><em>The oder of the targets list will determine the tab output order of the widget</em></p>
