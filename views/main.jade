@@ -48,13 +48,13 @@ block content
         if (typeof code === 'string')
           div.tab-pane(id= target).fade
             button(class='btn btn-default btn-xs btn-clipboard', data-clipboard-target='#{target}-code') #[i.fa.fa-copy] #[span Copy to Clipboard]
-            pre: code(id='#{target}-code')= code
+            pre: code(id='#{target}-code', class= namedTargets[target].extname.replace('.', ''))= code
 
         else
           each _code, _target in code
             div.tab-pane(id='#{target}-#{_target}').fade
               button(class='btn btn-default btn-xs btn-clipboard', data-clipboard-target='#{target}-#{_target}-code') #[i.fa.fa-copy] #[span Copy to Clipboard]
-              pre: code(id='#{target}-#{_target}-code')= _code
+              pre: code(id='#{target}-#{_target}-code', class= namedTargets[target].extname.replace('.', ''))= _code
 
     footer.hidden-xs Powered by #[a(href="https://apiembed.com/", target="_blank") APIembed], made with &hearts; at #[a(href="https://www.mashape.com/", target="_blank") Mashape].
     footer.visible-xs #[a(href="https://apiembed.com/", target="_blank") APIembed] by #[a(href="https://www.mashape.com/", target="_blank") Mashape].
