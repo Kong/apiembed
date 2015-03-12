@@ -489,7 +489,7 @@
           var targets = $('#targets');
 
           $.each(results, function (key, target) {
-            $('<div class="checkbox col-xs-6 col-sm-3 col-md-3"><label><input type="checkbox" name="' + (!target.clients ? 'target' : '') + '" value="' + target.key + '" data-clients="' + (target.clients ? target.key : '') + '"> ' + target.title + '</label></div>').appendTo(targets);
+            $('<div class="checkbox col-xs-6 col-sm-3 col-md-3"><label><input type="checkbox" name="' + (!target.clients ? 'target' : '') + '" value="' + target.key + '" data-clients="' + (target.clients ? target.key : '') + '" disabled> ' + target.title + '</label></div>').appendTo(targets);
 
             if (!target.clients) {
               $('#target-list').append('<kbd>' + target.key + '</kbd>');
