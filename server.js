@@ -201,7 +201,7 @@ app.get('/', function (req, res, next) {
 // error handler
 app.use(function errorHandler (error, req, res, next) {
   if (error.code === 400) {
-    error.message += ', please review the <a href="/" target="_top">documentation</a> and try again'
+    error.message += ', please review the <a href="https://apiembed.com/#docs" target="_blank">documentation</a> and try again'
   }
 
   // never show a 40x
