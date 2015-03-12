@@ -47,14 +47,14 @@ block content
       each code, target in output
         if (typeof code === 'string')
           div.tab-pane(id= target).fade
-            button(class='btn btn-default btn-xs btn-clipboard', data-clipboard-target='#{target}') #[i.fa.fa-copy] #[span Copy to Clipboard]
-            pre: code= code
+            button(class='btn btn-default btn-xs btn-clipboard', data-clipboard-target='#{target}-code') #[i.fa.fa-copy] #[span Copy to Clipboard]
+            pre: code(id='#{target}-code')= code
 
         else
           each _code, _target in code
             div.tab-pane(id='#{target}-#{_target}').fade
-              button(class='btn btn-default btn-xs btn-clipboard', data-clipboard-target='#{target}-#{_target}') #[i.fa.fa-copy] #[span Copy to Clipboard]
-              pre: code= _code
+              button(class='btn btn-default btn-xs btn-clipboard', data-clipboard-target='#{target}-#{_target}-code') #[i.fa.fa-copy] #[span Copy to Clipboard]
+              pre: code(id='#{target}-#{_target}-code')= _code
 
     footer.hidden-xs Powered by #[a(href="https://apiembed.com/") APIembed], made with &hearts; at #[a(href="https://www.mashape.com/") Mashape].
     footer.visible-xs #[a(href="https://apiembed.com/") APIembed] by #[a(href="https://www.mashape.com/") Mashape].
@@ -66,9 +66,9 @@ block scripts
         swfPath: '//cdnjs.cloudflare.com/ajax/libs/zeroclipboard/2.2.0/ZeroClipboard.swf',
         forceHandCursor: true,
         trustedDomains: [window.location.host, "cdnjs.cloudflare.com"]
-      });
+      })
 
-      new ZeroClipboard($('.btn-clipboard'));
+      new ZeroClipboard($('.btn-clipboard'))
 
       // select first tab
       $('.nav-tabs a[data-toggle="tab"]:first').tab('show');
