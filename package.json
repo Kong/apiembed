@@ -2,8 +2,8 @@
   "private": true,
   "version": "1.0.0",
   "name": "apiembed",
-  "description": "Embeddable API snippets",
-  "author": "Ahmad Nassri <ahmad@ahmadnassri.com> (https://www.ahmadnassri.com/)",
+  "description": "Embeddable API Code Snippets",
+  "author": "Ahmad Nassri <ahmad@mashape.com> (https://www.mashape.com/)",
   "homepage": "https://apiembed.com/",
   "license": "MIT",
   "engines": {
