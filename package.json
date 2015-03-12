@@ -7,7 +7,7 @@
   "homepage": "https://apiembed.com/",
   "license": "MIT",
   "engines": {
-    "node": "0.10.x",
+    "node": "0.12.x",
     "npm": "1.4.x"
   },
   "repository": {
