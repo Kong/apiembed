@@ -6,18 +6,6 @@
   "author": "Ahmad Nassri <ahmad@mashape.com> (https://www.mashape.com/)",
   "homepage": "https://apiembed.com/",
   "license": "MIT",
-  "engines": {
-    "node": "0.12.x",
-    "npm": "1.4.x"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/mashape/apiembed.git"
-  },
-  "bugs": {
-    "email": "opensource@mashape.com",
-    "url": "https://github.com/mashape/apiembed/issues"
-  },
   "keywords": [
     "HAR",
     "HTTP",
@@ -25,24 +13,42 @@
     "Embed",
     "Snippet"
   ],
+  "engines": {
+    "node": ">=0.12"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Mashape/apiembed"
+  },
+  "bugs": {
+    "url": "https://github.com/Mashape/apiembed/issues"
+  },
+  "scripts": {
+    "test": "standard && mocha --reporter spec",
+    "coverage": "istanbul cover ./node_modules/mocha/bin/_mocha"
+  },
+  "standard": {
+    "ignore": [
+      "**/test/fixtures/**"
+    ]
+  },
   "config": {
     "port": 8080
   },
-  "scripts": {
-    "test": "standard && mocha -R spec"
-  },
   "devDependencies": {
-    "mocha": "^2.1.0",
-    "should": "^4.6.1"
+    "codeclimate-test-reporter": "0.0.4",
+    "istanbul": "^0.3.8",
+    "mocha": "^2.2.1",
+    "should": "^5.2.0"
   },
   "dependencies": {
-    "compression": "^1.3.0",
-    "debug": "^2.1.1",
-    "dotenv": "^0.4.0",
-    "express": "^4.11.0",
+    "compression": "^1.4.3",
+    "debug": "^2.1.3",
+    "dotenv": "^1.0.0",
+    "express": "^4.12.2",
     "httpsnippet": "latest",
-    "jade": "^1.9.1",
-    "morgan": "^1.5.1",
+    "jade": "^1.9.2",
+    "morgan": "^1.5.2",
     "standard": "^2.11.0",
     "unirest": "^0.4.0"
   }
