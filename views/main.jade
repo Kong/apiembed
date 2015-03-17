@@ -56,8 +56,7 @@ block content
               button(class='btn btn-default btn-xs btn-clipboard', data-clipboard-target='#{target}-#{_target}-code') #[i.fa.fa-copy] #[span Copy to Clipboard]
               pre: code(id='#{target}-#{_target}-code', class= namedTargets[target].extname.replace('.', ''))= _code
 
-    footer.hidden-xs Powered by #[a(href="https://apiembed.com/", target="_blank") APIembed], made with &hearts; at #[a(href="https://www.mashape.com/", target="_blank") Mashape].
-    footer.visible-xs #[a(href="https://apiembed.com/", target="_blank") APIembed] by #[a(href="https://www.mashape.com/", target="_blank") Mashape].
+    footer Powered by #[a(href="https://apiembed.com/", target="_blank") APIembed]
 
 block scripts
   script(type='text/javascript').
