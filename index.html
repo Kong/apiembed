@@ -158,32 +158,35 @@
 
       .btn-default {
         color: #FFFFFF;
-        border-color: #0089EB;
-
-        background-color: #37A0E8;
-
+        border-color: #3943bd;
+        background-color: #3943bd;
         font-size: 13px;
         font-weight: 700;
-
         margin: 30px 0 80px 0;
-
         padding: 10px 15px;
 
-        text-shadow: 0 1px 0 rgba(0, 0, 0, 0.15);
       }
 
       .btn-default:hover {
         color: #FFFFFF;
-        border-color: #0089EB;
-        background-color: #2890E3;
+        border-color: #3943bd;
+        background-color: #3943bd;
       }
 
+      .btn-clipboard {
+        width: 100%;
+      }
 
       .form-horizontal .control-label {
         text-align: left;
         font-size: 13px;
         font-weight: 700;
         color: #262D33;
+      }
+
+      .form-horizontal .control-label .pull-right {
+        color: #435059;
+        font-weight: normal;
       }
 
       .checkbox label {
@@ -252,6 +255,10 @@
         padding-bottom: 15px;
       }
 
+      #docs kbd {
+        background-color: #3943bd;
+      }
+
       #target-list kbd {
         display: inline-block;
         margin-right: 5px;
@@ -259,35 +266,25 @@
       }
 
       footer .navbar-default .navbar-nav a {
-        color: #28a1fc;
+        color: #273d4c;
         font-size: 11px;
         font-weight: 700;
         text-transform: uppercase;
       }
 
       footer .navbar-default .navbar-nav a:hover {
-        color: #2477b2;
         text-decoration: underline;
       }
 
       .selectize-control.multi .selectize-input > div {
-        background-color: #999;
+        background-color: #3943bd;
         padding: .2em .6em .3em;
-        color: #fff;
+        color: #ddd;
         border-radius: .25em;
       }
 
       .selectize-control.multi .selectize-input > div > span {
-        color: #ddd;
-      }
-
-      .selectize-control.plugin-remove_button [data-value] .remove {
-        padding: 3px 0 0;
-        border-left: 1px solid #aaa;
-      }
-
-      .selectize-control.plugin-remove_button [data-value].active .remove {
-        border-left: 1px solid #ddd;
+        color: #fff;
       }
 
       @media (min-width: 767px) {
@@ -358,11 +355,10 @@
             <div class="form-group">
               <div class="col-xs-12"><hr/></div>
 
-              <label class="control-label col-xs-12">Targets:</label>
+              <label class="control-label col-xs-12">Targets: <span class="pull-right"><em>Drag and drop to sort. Click to add.</em></span></label>
 
               <div class="col-xs-12">
                 <select class="form-control" data-placeholder="Choose targets ..." name="targets" id="targets" multiple></select>
-                <p class="help-block"><em>Drag and drop to sort. Click to add.</em></p>
               </div>
             </div>
 
