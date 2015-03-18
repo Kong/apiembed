@@ -44,7 +44,7 @@
     <link rel="icon" type="image/x-icon" href="/favicon.ico"/>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.2/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.4.1/chosen.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.0/css/selectize.bootstrap3.min.css"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,800,700,600,300|Source+Code+Pro:200,300,400,500,600,700,900"/>
 
     <meta name="google-site-verification" content="XjJnyy8AZFpP7-_QiaaKEv0pDmNRCHjoAlW_uKnpLI4"/>
@@ -270,6 +270,21 @@
         text-decoration: underline;
       }
 
+      .selectize-control.multi .selectize-input > div {
+        background-color: #999;
+        padding: .2em .6em .3em;
+        color: #fff;
+        border-radius: .25em;
+      }
+
+      .selectize-control.plugin-remove_button [data-value] .remove {
+        padding: 3px 0 0;
+        border-left: 1px solid #aaa;
+      }
+
+      .selectize-control.plugin-remove_button [data-value].active .remove {
+        border-left: 1px solid #ddd;
+      }
 
       @media (min-width: 767px) {
         .form-container {
@@ -343,6 +358,7 @@
 
               <div class="col-xs-12">
                 <select class="form-control" data-placeholder="Choose targets ..." name="targets" id="targets" multiple></select>
+                <p class="help-block"><em>Drag and drop to sort.</em></p>
               </div>
             </div>
 
@@ -436,7 +452,8 @@
     <script type="text/javascript" src="https://www.google-analytics.com/analytics.js" async defer></script>
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.4.1/chosen.jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.0/js/standalone/selectize.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/zeroclipboard/2.2.0/ZeroClipboard.min.js"></script>
 
     <script type="text/javascript">
@@ -485,29 +502,58 @@
 
       function loadTargets () {
         $.getJSON('//api.apiembed.com/targets', function (results) {
-          var select = $('#targets')
-          var defaults = ['shell:curl', 'node', 'java', 'php:curl', 'python'];
+          var options = []
+          var optgroups = []
 
           $.each(results, function (key, target) {
             if (!target.clients) {
-              $('<option value="' + target.key + '">' + target.title + '</option>').appendTo(select)
+              options.push({
+                label: target.title,
+                title: target.title,
+                value: target.key
+              })
 
               $('#target-list').append('<kbd>' + target.key + '</kbd>')
             } else {
-              var optgroup = $('<optgroup label="' + target.title + '"></optgroup>')
-              optgroup.appendTo(select)
+              optgroups.push({
+                value: target.key,
+                title: target.title
+              })
 
               $.each(target.clients, function (key, client) {
-                $('<option value="' + target.key + ':' + client.key + '" ' + (~defaults.indexOf(target.key) || ~defaults.indexOf(target.key + ':' + client.key) ? 'selected' : '') +'>' + client.title + '</option>').appendTo(optgroup)
+                options.push({
+                  group: target.key,
+                  target: target.title,
+                  title: client.title,
+                  value: target.key + ':' + client.key
+                })
 
                 $('#target-list').append('<kbd>' + target.key + ':' + client.key + '</kbd>')
               })
             }
           })
 
-          $('#targets').chosen({
-            width: '100%',
-            include_group_label_in_selected: true
+          $('#targets').selectize({
+            items: ['shell:curl', 'node:request', 'node:unirest', 'java:unirest', 'php:curl', 'python:python3'],
+            options: options,
+            optgroups: optgroups,
+            persist: false,
+            labelField: 'title',
+            valueField: 'value',
+            optgroupField: 'group',
+            optgroupLabelField: 'title',
+            optgroupValueField: 'value',
+            searchField: ['title'],
+            plugins: ['drag_drop', 'remove_button'],
+            render: {
+              item: function (data) {
+                return '<div><span>' + data.target +':</span> ' + data.title + '</div>'
+              }
+            },
+            onItemAdd: function (value, $item) {
+              console.log(value)
+              console.log($item)
+            }
           })
 
           generateWidget()
