@@ -277,6 +277,10 @@
         border-radius: .25em;
       }
 
+      .selectize-control.multi .selectize-input > div > span {
+        color: #ddd;
+      }
+
       .selectize-control.plugin-remove_button [data-value] .remove {
         padding: 3px 0 0;
         border-left: 1px solid #aaa;
@@ -534,7 +538,7 @@
           })
 
           $('#targets').selectize({
-            items: ['shell:curl', 'node:request', 'node:unirest', 'java:unirest', 'php:curl', 'python:python3'],
+            items: ['shell:curl', 'node:request', 'node:unirest', 'java:unirest', 'php:curl', 'python:python3', 'ruby:native'],
             options: options,
             optgroups: optgroups,
             persist: false,
