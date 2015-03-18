@@ -255,10 +255,6 @@
         padding-bottom: 15px;
       }
 
-      #docs kbd {
-        background-color: #3943bd;
-      }
-
       #target-list kbd {
         display: inline-block;
         margin-right: 5px;
@@ -277,14 +273,18 @@
       }
 
       .selectize-control.multi .selectize-input > div {
-        background-color: #3943bd;
+        background-color: #999;
         padding: .2em .6em .3em;
-        color: #ddd;
+        color: #eee;
         border-radius: .25em;
       }
 
       .selectize-control.multi .selectize-input > div > span {
         color: #fff;
+      }
+
+      .selectize-control.plugin-remove_button [data-value] .remove {
+        padding: 3px 0 0;
       }
 
       @media (min-width: 767px) {
@@ -355,7 +355,7 @@
             <div class="form-group">
               <div class="col-xs-12"><hr/></div>
 
-              <label class="control-label col-xs-12">Targets: <span class="pull-right"><em>Drag and drop to sort. Click to add.</em></span></label>
+              <label class="control-label col-xs-12">Targets: <span class="pull-right"><em>Drag and drop to sort.</em></span></label>
 
               <div class="col-xs-12">
                 <select class="form-control" data-placeholder="Choose targets ..." name="targets" id="targets" multiple></select>
@@ -534,7 +534,7 @@
           })
 
           $('#targets').selectize({
-            items: ['shell:curl', 'node:request', 'node:unirest', 'java:unirest', 'php:curl', 'python:python3', 'ruby:native'],
+            items: ['shell:curl', 'node:unirest', 'java:unirest', 'php:curl', 'python:python3', 'ruby:native', 'go:native', 'objc:native'],
             options: options,
             optgroups: optgroups,
             persist: false,
