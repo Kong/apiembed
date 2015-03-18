@@ -465,11 +465,11 @@
         }
 
         // hack to showcase prioritized view
-        if ($(requested).is(['java:unirest', 'node:native', 'node:request', 'node:unirest', 'php:curl', 'python:python3', 'shell:curl'])) {
+        if (requested.join() === ['java:unirest', 'node:native', 'node:request', 'node:unirest', 'php:curl', 'python:python3', 'shell:curl'].join()) {
           requested = ['shell:curl', 'node:all', 'java:all', 'php:curl', 'python:all']
         }
 
-        var code = '<iframe src="//api.apiembed.com/?source=' + source + '&targets=' + requested.join(',') + '" frameborder="0" scrolling="no" width="' + width + '" height="' + height + '" seamless></iframe>';
+        var code = '<iframe src="//api.apiembed.com/?source=' + source + '&targets=' + requested.join() + '" frameborder="0" scrolling="no" width="' + width + '" height="' + height + '" seamless></iframe>';
 
         $('#embedcode').val(code)
         $('#preview').html(code)
