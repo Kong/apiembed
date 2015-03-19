@@ -6,17 +6,17 @@ The target transformation is powered by [HTTP Snippet](https://github.com/Mashap
 
 Main Targets:
 
-Shell
-Javascript
-Node
-Java
-PHP
-Objective-C
-Swift
-Python
-Ruby
-Go
-OCaml
+- Shell
+- Javascript
+- Node
+- Java
+- PHP
+- Objective-C
+- Swift
+- Python
+- Ruby
+- Go
+- OCaml
 
 ### We &hearts; Open Source
 
