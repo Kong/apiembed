@@ -481,11 +481,6 @@
           requested = ['all']
         }
 
-        // hack to showcase prioritized view
-        if (requested.join() === ['java:unirest', 'node:native', 'node:request', 'node:unirest', 'php:curl', 'python:requests', 'shell:curl'].join()) {
-          requested = ['shell:curl', 'node:all', 'java:all', 'php:curl', 'python:all']
-        }
-
         var code = '<iframe src="//api.apiembed.com/?source=' + source + '&targets=' + requested.join() + '" frameborder="0" scrolling="no" width="' + width + '" height="' + height + '" seamless></iframe>';
 
         $('#embedcode').val(code)
@@ -534,7 +529,7 @@
           })
 
           $('#targets').selectize({
-            items: ['shell:curl', 'node:unirest', 'java:unirest', 'php:curl', 'python:python3', 'ruby:native', 'go:native', 'objc:native'],
+            items: ['shell:curl', 'node:unirest', 'java:unirest', 'python:requests', 'php:curl', 'ruby:native', 'objc:nsurlsession', 'go:native'],
             options: options,
             optgroups: optgroups,
             persist: false,
