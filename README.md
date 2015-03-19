@@ -2,7 +2,7 @@
 
 Auto-generated code snippets in many programming languages for your website, blog or API documentation.
 
-The target transformation is powered by [HTTPsnippet](https://github.com/Mashape/httpsnippet).  For any errors with the target syntax, or for additional target requests, please submit an issue there.
+The target transformation is powered by [HTTP Snippet](https://github.com/Mashape/httpsnippet).  For any errors with the target syntax, or for additional target requests, please submit an issue there.
 
 ### We &hearts; Open Source
 
