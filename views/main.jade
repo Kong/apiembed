@@ -60,63 +60,69 @@ block content
 
 block scripts
   script(type='text/javascript').
-    $(function() {
+    $(function () {
+      // configure Zero Clipboard
       ZeroClipboard.config({
         swfPath: '//cdnjs.cloudflare.com/ajax/libs/zeroclipboard/2.2.0/ZeroClipboard.swf',
         forceHandCursor: true,
         trustedDomains: [window.location.host, "cdnjs.cloudflare.com"]
       })
 
+      // attach Zero Clipboard
       new ZeroClipboard($('.btn-clipboard'))
 
       // select first tab
-      $('.nav-tabs a[data-toggle="tab"]:first').tab('show');
+      $('.nav-tabs a[data-toggle="tab"]:first').tab('show')
 
-      $(window).resize(function(){
+      // resize events
+      $(window).resize(function () {
         var totalWidth = 0;
         var windowWidth = $(this).width();
 
-        $('.nav-tabs > li').each(function() {
-          var tab = $(this);
-          var link = tab.find('a');
+        $('.nav-tabs > li').each(function () {
+          var tab = $(this)
+          var link = tab.find('a')
 
-          totalWidth += tab.width();
+          totalWidth += tab.width()
 
-          if (tab.position().left + 100 > windowWidth) {
-            tab.addClass('hidden');
+          console.log(link.attr('href'), tab.position().left, tab.position().left + tab.width())
 
-            $('.btn-dropdown a[href*="' + link.attr('href') + '"]').removeClass('hidden');
-            $('.btn-dropdown li[data-clients*="' + link.attr('href') + '"]').removeClass('hidden');
+          if (tab.position().left + tab.width() + 100 > windowWidth) {
+            tab.addClass('hidden')
+
+            $('.btn-dropdown a[href*="' + link.attr('href') + '"]').removeClass('hidden')
+            $('.btn-dropdown li[data-clients*="' + link.attr('href') + '"]').removeClass('hidden')
           } else {
-            tab.removeClass('hidden');
+            tab.removeClass('hidden')
 
-            $('.btn-dropdown a[href*="' + link.attr('href') + '"]').addClass('hidden');
-            $('.btn-dropdown li[data-clients*="' + link.attr('href') + '"]').addClass('hidden');
+            $('.btn-dropdown a[href*="' + link.attr('href') + '"]').addClass('hidden')
+            $('.btn-dropdown li[data-clients*="' + link.attr('href') + '"]').addClass('hidden')
           }
-        });
+        })
 
         if (totalWidth + 50 > windowWidth) {
-          $('.btn-dropdown').removeClass('hidden');
+          $('.btn-dropdown').removeClass('hidden')
         } else {
-          $('.btn-dropdown').addClass('hidden');
+          $('.btn-dropdown').addClass('hidden')
         }
 
         $('.dropdown-menu').css('max-height', $(this).height() - 100)
-      }).resize();
+      }).resize()
 
+      // dropdown click events
       $('.btn-dropdown a[data-toggle="tab"]').on('click', function (e) {
-        e.preventDefault();
+        e.preventDefault()
 
-        $('.btn-dropdown .active').removeClass('active');
-        $('.nav-tabs .active').removeClass('active');
+        $('.btn-dropdown .active').removeClass('active')
+        $('.nav-tabs .active').removeClass('active')
 
-        $(this).tab('show');
+        $(this).tab('show')
 
-        $('a[href="' + $(e.target).attr('href') + '"]').parent().addClass('active');
+        $('a[href="' + $(e.target).attr('href') + '"]').parent().addClass('active')
       });
 
       // highlight the code
       $('.tab-content pre code').each(function (i, block) {
-        hljs.highlightBlock(block);
-      });
-    });
+        hljs.highlightBlock(block)
+      })
+    })

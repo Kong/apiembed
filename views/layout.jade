@@ -308,15 +308,15 @@ html(lang='en', itemscope, itemtype='http://schema.org/Product')
     script(type='text/javascript').
       function resize () {
         // calculate the new height
-        var height = $(window).height();
+        var height = $(window).height()
 
-        height -= $('.nav').height();
-        height -= $('footer:visible').height();
-        height -= parseInt($('code:first-of-type').css('padding-top')) * 2;
+        height -= $('.nav').height()
+        height -= $('footer:visible').height()
+        height -= parseInt($('code:first-of-type').css('padding-top')) * 2
 
         // adjust the height
-        $('.tab-content').height(height);
+        $('.tab-content').height(height)
       }
 
-      $(document).ready(resize);
-      $(window).resize(resize);
+      $(document).ready(resize)
+      $(window).resize(resize)
