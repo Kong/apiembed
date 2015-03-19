@@ -1,6 +1,6 @@
 # [APIembed](https://apiembed.com/) - API Code snippets
 
-Auto-generated, embeddable code snippets in many programming languages for your website, blog or API docs.
+Auto-generated, code snippets in many programming languages for your website, blog or API docs.
 
 The target transformation is powered by [HTTP Snippet](https://github.com/Mashape/httpsnippet).  For any errors with the target syntax, or for additional target requests, please submit an issue there.
 
@@ -24,4 +24,4 @@ The [APIembed website](https://github.com/Mashape/apiembed/tree/gh-pages) and th
 
 ---
 
-Made with &#9829; at [Mashape](https://www.mashape.com/)
+Handcrafted by [Mashape](https://www.mashape.com/)
