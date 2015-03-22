@@ -1,1 +1,1 @@
-web: DEBUG=apiembed npm start
+web: npm start
