@@ -25,4 +25,4 @@ The [APIembed website](https://github.com/Mashape/apiembed/tree/gh-pages) and th
 
 ---
 
-                          Handcrafted by [Mashape](https://www.mashape.com/)
+Handcrafted by [Mashape](https://www.mashape.com/)
