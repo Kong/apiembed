@@ -21,7 +21,7 @@ Main Targets:
 
 ### We &hearts; Open Source
 
-The [APIembed website](https://github.com/Mashape/apiembed/tree/gh-pages) and the [APIembed API](https://github.com/Mashape/apiembed/tree/master) are open source.  We'd love to hear your feedback and suggestions!
+The [APIembed website](https://github.com/Mashape/apiembed/tree/gh-pages) and the [APIembed API](https://github.com/Mashape/apiembed/tree/master) are open source.  We'd love to hear your feedback!
 
 ---
 
