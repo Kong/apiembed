@@ -15,6 +15,7 @@ Main Targets:
 - Swift
 - Python
 - Ruby
+- C#
 - Go
 - OCaml
 - You can add more languages [here](https://github.com/Mashape/httpsnippet/blob/master/CONTRIBUTING.md)
