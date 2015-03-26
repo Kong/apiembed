@@ -9,6 +9,7 @@ Main Targets:
 - Shell
 - Javascript
 - Node
+- C
 - Java
 - PHP
 - Objective-C
