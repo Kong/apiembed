@@ -27,4 +27,4 @@ The [APIembed website](https://github.com/Kong/apiembed/tree/gh-pages) and the [
 
 ---
 
-Handcrafted by [Mashape](https://www.konghq.com/)
+Handcrafted by [Kong](https://www.konghq.com/)
