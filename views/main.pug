@@ -1,4 +1,4 @@
-extends layout.jade
+extends layout.pug
 
 block content
   div#embed
@@ -8,21 +8,21 @@ block content
           - var clients = (typeof code === 'string') ? false : Object.keys(code)
 
           if (!clients)
-            li: a(href='##{target}', data-toggle='tab')= namedTargets[target].title
+            li: a(href=`#${target}`, data-toggle='tab')= namedTargets[target].title
 
           else if (clients.length === 1)
-            li: a(href='##{target}-#{clients[0]}', data-toggle='tab')= namedTargets[target].title
+            li: a(href=`#${target}-${clients[0]}`, data-toggle='tab')= namedTargets[target].title
 
           else
             li.dropdown
-              a.dropdown-toggle(href='##{target}', data-toggle='dropdown')
+              a.dropdown-toggle(href=`#${target}`, data-toggle='dropdown')
                 span= namedTargets[target].title
                 span &nbsp;
                 span.caret
 
               ul.dropdown-menu
                 each _code, client in code
-                  li: a(href='##{target}-#{client}', data-toggle='tab') #[i.fa.fa-check] #[= namedTargets[target].clients[client].title]
+                  li: a(href=`#${target}-${client}`, data-toggle='tab') #[i.fa.fa-check] #[= namedTargets[target].clients[client].title]
 
       div.btn-dropdown.dropdown.hidden.pull-right
         button.btn.btn-default.dropdown-toggle(type="button", data-toggle="dropdown"): i.fa.fa-bars
@@ -32,44 +32,36 @@ block content
             - var clients = (typeof code === 'string') ? false : Object.keys(code)
 
             if (!clients)
-              li: a.hidden(href='##{target}', data-toggle='tab') #[i.fa.fa-check] #[= namedTargets[target].title]
+              li: a.hidden(href=`#${target}`, data-toggle='tab') #[i.fa.fa-check] #[= namedTargets[target].title]
 
             else if (clients.length === 1)
-              li: a.hidden(href='##{target}-#{clients[0]}', data-toggle='tab') #[i.fa.fa-check] #[= namedTargets[target].title]
+              li: a.hidden(href=`#${target}-${clients[0]}`, data-toggle='tab') #[i.fa.fa-check] #[= namedTargets[target].title]
 
             else
               li.dropdown-header.hidden(data-clients= '#' + target + '-' + Object.keys(code).join(',#' + target + '-'))= namedTargets[target].title
 
               each _code, client in code
-                li: a.hidden(href='##{target}-#{client}', data-toggle='tab') #[i.fa.fa-check] #[= namedTargets[target].clients[client].title]
+                li: a.hidden(href=`#${target}-${client}`, data-toggle='tab') #[i.fa.fa-check] #[= namedTargets[target].clients[client].title]
 
     div.tab-content
       each code, target in output
         if (typeof code === 'string')
           div.tab-pane(id= target).fade
-            button(class='btn btn-default btn-xs btn-clipboard', data-clipboard-target='#{target}-code') #[i.fa.fa-copy] #[span Copy to Clipboard]
-            pre: code(id='#{target}-code', class= namedTargets[target].extname.replace('.', ''))= code
+            button(class='btn btn-default btn-xs btn-clipboard', data-clipboard-target=`${target}-code`) #[i.fa.fa-copy] #[span Copy to Clipboard]
+            pre: code(id=`${target}-code`, class= namedTargets[target].extname.replace('.', ''))= code
 
         else
           each _code, _target in code
-            div.tab-pane(id='#{target}-#{_target}').fade
-              button(class='btn btn-default btn-xs btn-clipboard', data-clipboard-target='#{target}-#{_target}-code') #[i.fa.fa-copy] #[span Copy to Clipboard]
-              pre: code(id='#{target}-#{_target}-code', class= namedTargets[target].extname.replace('.', ''))= _code
+            div.tab-pane(id=`${target}-${_target}`).fade
+              button(class='btn btn-default btn-xs btn-clipboard', data-clipboard-target=`#${target}-${_target}-code`) #[i.fa.fa-copy] #[span Copy to Clipboard]
+              pre: code(id=`${target}-${_target}-code`, class= namedTargets[target].extname.replace('.', ''))= _code
 
     footer Powered by #[a(href="https://apiembed.com/", target="_blank") APIembed]
 
 block scripts
   script(type='text/javascript').
     $(function () {
-      // configure Zero Clipboard
-      ZeroClipboard.config({
-        swfPath: '//cdnjs.cloudflare.com/ajax/libs/zeroclipboard/2.2.0/ZeroClipboard.swf',
-        forceHandCursor: true,
-        trustedDomains: [window.location.host, "cdnjs.cloudflare.com"]
-      })
-
-      // attach Zero Clipboard
-      new ZeroClipboard($('.btn-clipboard'))
+      new ClipboardJS('.btn-clipboard');
 
       // select first tab
       $('.nav-tabs a[data-toggle="tab"]:first').tab('show')
@@ -84,8 +76,6 @@ block scripts
           var link = tab.find('a')
 
           totalWidth += tab.width()
-
-          console.log(link.attr('href'), tab.position().left, tab.position().left + tab.width())
 
           if (tab.position().left + tab.width() + 100 > windowWidth) {
             tab.addClass('hidden')
