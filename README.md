@@ -2,7 +2,7 @@
 
 Auto-generated, code snippets in many programming languages for your website, blog or API docs.
 
-The target transformation is powered by [HTTP Snippet](https://github.com/Mashape/httpsnippet).  For any errors with the target syntax, or for additional target requests, please submit an issue there.
+The target transformation is powered by [HTTP Snippet](https://github.com/Kong/httpsnippet).  For any errors with the target syntax, or for additional target requests, please submit an issue there.
 
 Main Targets:
 
@@ -19,12 +19,12 @@ Main Targets:
 - C#
 - Go
 - OCaml
-- You can add more languages [here](https://github.com/Mashape/httpsnippet/blob/master/CONTRIBUTING.md)
+- You can add more languages [here](https://github.com/Kong/httpsnippet/blob/master/CONTRIBUTING.md)
 
 ### We &hearts; Open Source
 
-The [APIembed website](https://github.com/Mashape/apiembed/tree/gh-pages) and the [APIembed API](https://github.com/Mashape/apiembed/tree/master) are open source.  We'd love to hear your feedback!
+The [APIembed website](https://github.com/Kong/apiembed/tree/gh-pages) and the [APIembed API](https://github.com/Kong/apiembed/tree/master) are open source.  We'd love to hear your feedback!
 
 ---
 
-Handcrafted by [Mashape](https://www.mashape.com/)
+Handcrafted by [Mashape](https://www.konghq.com/)

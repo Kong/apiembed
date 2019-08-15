@@ -18,10 +18,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Mashape/apiembed"
+    "url": "https://github.com/Kong/apiembed"
   },
   "bugs": {
-    "url": "https://github.com/Mashape/apiembed/issues"
+    "url": "https://github.com/Kong/apiembed/issues"
   },
   "scripts": {
     "test": "standard && mocha --reporter spec",
