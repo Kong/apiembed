@@ -47,7 +47,7 @@
     "debug": "^2.1.3",
     "express": "^4.12.3",
     "httpsnippet": "latest",
-    "pug": "^2.0.4",
+    "pug": "^3.0.1",
     "morgan": "^1.5.2",
     "unirest": "^0.6.0"
   }
